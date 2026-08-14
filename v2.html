@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>นิตยา บุญแสนรัน — ช่างซ่อมตู้เย็นถึงบ้าน</title>
+<meta name="description" content="นิตยา บุญแสนรัน บริการซ่อมตู้เย็นถึงบ้าน มาตรฐานช่างฝีมือดี สืบทอดความเชี่ยวชาญมากว่าสามทศวรรษ อะไหล่แท้ รับประกันผลงาน">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pridi:wght@200;300;400;500;600&family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@0.460.0"></script>
+<style>
+  :root{
+    --background:#201409;
+    --card:#3B2A1A;
+    --bg-accent:#2C1F12;
+    --foreground:#EFE4CB;
+    --muted:#A88F66;
+    --border:#5C4429;
+    --primary:#7A5230;
+    --secondary:#4A3521;
+    --accent:#D8C7A1;
+    --font-heading:'Pridi', 'Times New Roman', serif;
+    --font-body:'Sarabun', 'Sukhumvit Set', sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--background);
+    color:var(--foreground);
+    font-family:var(--font-body);
+    line-height:1.8;
+    font-size:16px;
+    word-break:break-word;
+    overflow-wrap:break-word;
+    overflow-x:hidden;
+  }
+  img{width:100%;height:auto;display:block;}
+  a{color:inherit;text-decoration:none;}
+  ul{list-style:none;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 20px;}
+  .sc{
+    display:block;
+    font-family:var(--font-body);
+    font-size:0.72em;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--muted);
+    font-weight:600;
+  }
+  h1,h2,h3,h4{
+    font-family:var(--font-heading);
+    font-weight:400;
+    line-height:1.55;
+    color:var(--foreground);
+  }
+  .rule{border:none;border-top:1px solid var(--border);width:100%;}
+  .rule-v{border-left:1px solid var(--border);}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    background:rgba(32,20,9,0.85);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid transparent;
+    transition:background .4s ease, border-color .4s ease, padding .4s ease;
+    padding:18px 0;
+  }
+  header.scrolled{
+    background:rgba(28,18,8,0.97);
+    border-bottom-color:var(--border);
+    padding:10px 0;
+  }
+  nav.wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;}
+  .brand{
+    font-family:var(--font-heading);
+    font-size:1.15rem;
+    letter-spacing:0.02em;
+    color:var(--accent);
+  }
+  .brand small{display:block;font-family:var(--font-body);font-size:0.6rem;letter-spacing:0.28em;color:var(--muted);text-transform:uppercase;margin-top:2px;}
+  .nav-links{display:none;align-items:center;gap:28px;}
+  .nav-links a{
+    font-size:0.82rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--foreground);
+    padding:10px 2px;position:relative;
+  }
+  .nav-links a::after{content:"";position:absolute;left:0;bottom:4px;width:0;height:1px;background:var(--accent);transition:width .3s ease;}
+  .nav-links a:hover::after{width:100%;}
+  .nav-right{display:flex;align-items:center;gap:18px;}
+  .lang-sw{
+    display:flex;align-items:center;gap:5px;font-size:0.78em;color:var(--muted);
+    padding:6px;border-radius:999px;
+  }
+  .lang-sw:hover{color:var(--accent);}
+  .lang-sw svg{stroke:currentColor;}
+  .burger{
+    display:flex;flex-direction:column;justify-content:center;gap:5px;
+    width:44px;height:44px;background:none;border:1px solid var(--border);border-radius:2px;
+    cursor:pointer;
+  }
+  .burger span{display:block;width:18px;height:1px;background:var(--foreground);margin:0 auto;}
+  .mobile-menu{
+    display:none;flex-direction:column;
+    position:fixed;top:0;right:0;height:100vh;width:78%;max-width:320px;
+    background:var(--card);border-left:1px solid var(--border);
+    padding:90px 30px 30px;z-index:99;
+    transform:translateX(100%);transition:transform .4s ease;
+  }
+  .mobile-menu.open{transform:translateX(0);}
+  .mobile-menu a{
+    font-family:var(--font-heading);font-size:1.2rem;padding:14px 0;border-bottom:1px solid var(--border);color:var(--foreground);
+  }
+  .menu-overlay{
+    position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:98;opacity:0;pointer-events:none;transition:opacity .3s ease;
+  }
+  .menu-overlay.open{opacity:1;pointer-events:auto;}
+
+  @media(min-width:900px){
+    .nav-links{display:flex;}
+    .burger{display:none;}
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:150px 0 70px;
+    text-align:center;
+    background:
+      radial-gradient(ellipse at 50% -10%, rgba(122,82,48,0.35), transparent 60%),
+      var(--background);
+    position:relative;
+  }
+  .hero .sc{margin-bottom:18px;}
+  .hero h1{
+    font-size:clamp(2.1rem, 6vw, 3.6rem);
+    font-weight:300;
+    padding-top:8px;
+    letter-spacing:0.01em;
+  }
+  .hero h1 em{font-style:italic;color:var(--accent);}
+  .hero p.lead{
+    max-width:560px;margin:22px auto 0;color:var(--muted);font-size:1.02rem;
+  }
+  .hero-cta{
+    display:flex;flex-direction:column;gap:14px;align-items:center;margin-top:34px;
+  }
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    font-family:var(--font-body);font-weight:600;font-size:0.85rem;
+    letter-spacing:0.08em;text-transform:uppercase;
+    padding:1em 2em;min-height:44px;border-radius:2px;
+    border:1px solid transparent;cursor:pointer;
+    transition:transform .3s ease, box-shadow .3s ease, background .3s ease;
+  }
+  .btn-primary{background:var(--primary);color:var(--foreground);}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(122,82,48,0.4);}
+  .btn-outline{background:transparent;border-color:var(--border);color:var(--foreground);}
+  .btn-outline:hover{border-color:var(--accent);color:var(--accent);}
+  @media(min-width:560px){.hero-cta{flex-direction:row;justify-content:center;}}
+
+  .hero-frame{
+    max-width:760px;margin:56px auto 0;
+    border:1px solid var(--border);
+    padding:14px;
+    position:relative;
+  }
+  .hero-frame::before{
+    content:"";position:absolute;inset:6px;border:1px solid var(--border);pointer-events:none;
+  }
+  .hero-frame .img-box{overflow:visible;position:relative;}
+  .hero-frame img{filter:sepia(18%) saturate(85%);transition:transform 8s ease;}
+  .hero-frame:hover img{transform:scale(1.06);}
+  .plate-caption{
+    display:flex;justify-content:space-between;align-items:baseline;
+    padding:14px 6px 4px;font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);
+  }
+
+  /* ---------- SECTION GENERIC ---------- */
+  section{padding:76px 0;}
+  .section-head{text-align:center;max-width:640px;margin:0 auto 52px;}
+  .section-head .sc{margin-bottom:14px;}
+  .section-head h2{font-size:clamp(1.7rem,4vw,2.4rem);font-weight:300;padding-top:6px;}
+  .divider-orn{display:flex;align-items:center;justify-content:center;gap:12px;margin:18px auto 0;color:var(--border);}
+  .divider-orn .ln{width:40px;height:1px;background:var(--border);}
+
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in-view{opacity:1;transform:translateY(0);}
+
+  /* ---------- PHILOSOPHY ---------- */
+  .philosophy{
+    background:var(--bg-accent);
+    border-top:1px solid var(--border);
+    border-bottom:1px solid var(--border);
+    text-align:center;
+  }
+  .philosophy blockquote{
+    max-width:720px;margin:0 auto;font-family:var(--font-heading);
+    font-size:clamp(1.3rem,3.4vw,1.9rem);font-weight:300;font-style:italic;color:var(--accent);
+    padding-top:10px;
+  }
+  .philosophy .attrib{margin-top:22px;}
+
+  /* ---------- SERVICES GRID ---------- */
+  .service-grid{
+    display:grid;grid-template-columns:1fr;gap:0;
+    border-top:1px solid var(--border);border-left:1px solid var(--border);
+  }
+  @media(min-width:640px){.service-grid{grid-template-columns:1fr 1fr;}}
+  @media(min-width:1000px){.service-grid{grid-template-columns:1fr 1fr 1fr;}}
+  .service-card{
+    border-right:1px solid var(--border);border-bottom:1px solid var(--border);
+    padding:42px 30px;position:relative;
+    transition:background .35s ease;
+  }
+  .service-card:hover{background:var(--card);}
+  .service-card .num{
+    font-family:var(--font-heading);font-size:0.85rem;color:var(--muted);letter-spacing:0.1em;
+  }
+  .service-card .icon-ring{
+    width:56px;height:56px;border:1px solid var(--border);border-radius:50%;
+    display:flex;align-items:center;justify-content:center;margin:20px 0 22px;color:var(--accent);
+    transition:border-color .3s ease, transform .3s ease;
+  }
+  .service-card:hover .icon-ring{border-color:var(--accent);transform:rotate(8deg);}
+  .service-card h3{font-size:1.15rem;font-weight:400;margin-bottom:8px;padding-top:4px;}
+  .service-card p{color:var(--muted);font-size:0.94rem;}
+
+  /* ---------- PROCESS ---------- */
+  .process{background:var(--bg-accent);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+  .steps{max-width:760px;margin:0 auto;}
+  .step{
+    display:grid;grid-template-columns:64px 1fr;gap:20px;padding:28px 0;border-bottom:1px solid var(--border);
+  }
+  .step:last-child{border-bottom:none;}
+  .step .roman{
+    font-family:var(--font-heading);font-size:1.6rem;color:var(--muted);text-align:center;padding-top:6px;
+  }
+  .step h3{font-size:1.08rem;font-weight:500;margin-bottom:6px;padding-top:4px;}
+  .step p{color:var(--muted);font-size:0.93rem;}
+
+  /* ---------- STATS ---------- */
+  .stats-strip{
+    display:grid;grid-template-columns:1fr;
+    border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  }
+  @media(min-width:640px){.stats-strip{grid-template-columns:repeat(4,1fr);}}
+  .stat{
+    text-align:center;padding:38px 20px;border-bottom:1px solid var(--border);
+  }
+  @media(min-width:640px){.stat{border-bottom:none;border-right:1px solid var(--border);} .stat:last-child{border-right:none;}}
+  .stat .stat-num{font-family:var(--font-heading);font-size:2.4rem;color:var(--accent);font-weight:300;padding-top:6px;}
+  .stat .sc{margin-top:8px;}
+
+  /* ---------- GALLERY ---------- */
+  .gallery-grid{display:grid;grid-template-columns:1fr;gap:26px;}
+  @media(min-width:640px){.gallery-grid{grid-template-columns:1fr 1fr;}}
+  .plate{border:1px solid var(--border);padding:10px;transition:transform .35s ease, box-shadow .35s ease;}
+  .plate:hover{transform:translateY(-6px);box-shadow:0 18px 34px rgba(0,0,0,0.35);}
+  .plate .img-box{overflow:hidden;}
+  .plate img{filter:sepia(14%) saturate(90%);transition:transform .6s ease;}
+  .plate:hover img{transform:scale(1.05);}
+
+  /* ---------- ABOUT / CRAFT ---------- */
+  .craft{display:grid;grid-template-columns:1fr;gap:44px;align-items:center;}
+  @media(min-width:860px){.craft{grid-template-columns:0.85fr 1.15fr;}}
+  .craft-frame{border:1px solid var(--border);padding:12px;}
+  .craft-frame img{filter:sepia(18%) saturate(85%);}
+  .craft-text h2{font-size:clamp(1.6rem,3.6vw,2.1rem);font-weight:300;margin-bottom:18px;padding-top:6px;}
+  .craft-text p{color:var(--muted);margin-bottom:16px;}
+  .craft-text .sc{margin-bottom:14px;}
+
+  /* ---------- TESTIMONIALS ---------- */
+  .testi-grid{display:grid;grid-template-columns:1fr;gap:24px;}
+  @media(min-width:760px){.testi-grid{grid-template-columns:1fr 1fr 1fr;}}
+  .testi{border:1px solid var(--border);padding:34px 28px;position:relative;background:var(--card);}
+  .testi .q-icon{color:var(--border);margin-bottom:14px;}
+  .testi p.quote{font-style:italic;color:var(--foreground);margin-bottom:20px;font-size:0.96rem;}
+  .testi .who{display:flex;align-items:center;gap:12px;}
+  .testi .who img{width:44px;height:44px;border-radius:50%;object-fit:cover;filter:sepia(20%);}
+  .testi .who .name{font-family:var(--font-heading);font-size:0.95rem;}
+  .testi .who .role{font-size:0.72rem;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;}
+
+  /* ---------- COVERAGE ---------- */
+  .coverage{background:var(--bg-accent);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+  .area-list{
+    display:grid;grid-template-columns:repeat(2,1fr);gap:14px 24px;max-width:640px;margin:0 auto;
+  }
+  @media(min-width:640px){.area-list{grid-template-columns:repeat(3,1fr);}}
+  .area-list li{
+    display:flex;align-items:center;gap:8px;font-size:0.92rem;color:var(--muted);padding:6px 0;border-bottom:1px solid var(--border);
+  }
+  .area-list li i{color:var(--accent);flex-shrink:0;width:15px;height:15px;}
+
+  /* ---------- CONTACT ---------- */
+  .contact-grid{display:grid;grid-template-columns:1fr;gap:44px;}
+  @media(min-width:860px){.contact-grid{grid-template-columns:1fr 1fr;}}
+  .contact-info{border:1px solid var(--border);padding:36px 30px;}
+  .contact-info h3{font-size:1.3rem;font-weight:400;margin-bottom:22px;padding-top:4px;}
+  .info-row{display:flex;gap:14px;align-items:flex-start;margin-bottom:20px;}
+  .info-row i{color:var(--accent);flex-shrink:0;margin-top:3px;}
+  .info-row .label{font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-bottom:3px;}
+  .info-row .val{font-size:0.98rem;}
+
+  .form-box{border:1px solid var(--border);padding:36px 30px;}
+  .form-box h3{font-size:1.3rem;font-weight:400;margin-bottom:22px;padding-top:4px;}
+  .field{margin-bottom:22px;}
+  .field label{display:block;font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+  .field input,.field textarea{
+    width:100%;background:transparent;border:none;border-bottom:1px solid var(--border);
+    color:var(--foreground);font-family:var(--font-body);font-size:0.98rem;padding:10px 2px;
+    outline:none;transition:border-color .3s ease;
+  }
+  .field input:focus,.field textarea:focus{border-color:var(--accent);}
+  .field textarea{resize:vertical;min-height:80px;}
+
+  /* ---------- FOOTER ---------- */
+  footer{padding:60px 0 30px;text-align:center;border-top:1px solid var(--border);}
+  footer .brand{font-size:1.4rem;margin-bottom:6px;}
+  .foot-links{display:flex;flex-wrap:wrap;justify-content:center;gap:22px;margin:26px 0;}
+  .foot-links a{font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);}
+  .foot-links a:hover{color:var(--accent);}
+  .foot-social{display:flex;justify-content:center;gap:16px;margin-bottom:30px;}
+  .foot-social a{
+    width:38px;height:38px;border:1px solid var(--border);border-radius:50%;
+    display:flex;align-items:center;justify-content:center;color:var(--muted);
+    transition:color .3s ease, border-color .3s ease;
+  }
+  .foot-social a:hover{color:var(--accent);border-color:var(--accent);}
+  footer .copy{font-size:0.78rem;color:var(--muted);}
+</style>
+</head>
+<body>
+
+<header id="site-header">
+  <nav class="wrap">
+    <a href="#top" class="brand">นิตยา บุญแสนรัน<small>REFRIGERATOR SERVICE</small></a>
+    <div class="nav-links">
+      <a href="#services" data-lang-th="บริการ" data-lang-en="Services">บริการ</a>
+      <a href="#process" data-lang-th="ขั้นตอนงาน" data-lang-en="Process">ขั้นตอนงาน</a>
+      <a href="#gallery" data-lang-th="ผลงาน" data-lang-en="Gallery">ผลงาน</a>
+      <a href="#reviews" data-lang-th="รีวิว" data-lang-en="Reviews">รีวิว</a>
+      <a href="#contact" data-lang-th="ติดต่อ" data-lang-en="Contact">ติดต่อ</a>
+    </div>
+    <div class="nav-right">
+      <span class="lang-sw"><i data-lucide="globe" width="14" height="14"></i><span class="lang-sw__label">TH</span></span>
+      <button class="burger" id="burgerBtn" aria-label="menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+</header>
+
+<div class="menu-overlay" id="menuOverlay"></div>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#services" data-lang-th="บริการ" data-lang-en="Services">บริการ</a>
+  <a href="#process" data-lang-th="ขั้นตอนงาน" data-lang-en="Process">ขั้นตอนงาน</a>
+  <a href="#gallery" data-lang-th="ผลงาน" data-lang-en="Gallery">ผลงาน</a>
+  <a href="#reviews" data-lang-th="รีวิว" data-lang-en="Reviews">รีวิว</a>
+  <a href="#contact" data-lang-th="ติดต่อ" data-lang-en="Contact">ติดต่อ</a>
+</div>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <span class="sc" data-lang-th="เปิดให้บริการตั้งแต่ พ.ศ. 2531" data-lang-en="Established Since 1988">เปิดให้บริการตั้งแต่ พ.ศ. 2531</span>
+      <h1 data-lang-th='ช่างซ่อมตู้เย็นถึงบ้าน<br>ด้วยฝีมือที่ <em>สืบทอด</em>มาสามชั่วรุ่น' data-lang-en='On-Site Refrigerator Repair<br>Craft <em>Passed Down</em> Three Generations'>ช่างซ่อมตู้เย็นถึงบ้าน<br>ด้วยฝีมือที่ <em>สืบทอด</em>มาสามชั่วรุ่น</h1>
+      <p class="lead" data-lang-th="บริการซ่อมตู้เย็น ตู้แช่ และเครื่องทำความเย็นทุกชนิดถึงหน้าบ้านคุณ ด้วยความละเอียดแบบช่างยุคเก่า และอะไหล่แท้ทุกชิ้น" data-lang-en="Home and shop refrigeration repair, delivered with the meticulous care of an old-world craftsman and only genuine parts.">บริการซ่อมตู้เย็น ตู้แช่ และเครื่องทำความเย็นทุกชนิดถึงหน้าบ้านคุณ ด้วยความละเอียดแบบช่างยุคเก่า และอะไหล่แท้ทุกชิ้น</p>
+      <div class="hero-cta">
+        <a href="tel:0812345678" class="btn btn-primary"><i data-lucide="phone" width="16" height="16"></i><span data-lang-th="โทรเรียกช่าง" data-lang-en="Call a Technician">โทรเรียกช่าง</span></a>
+        <a href="#services" class="btn btn-outline"><span data-lang-th="ดูรายการบริการ" data-lang-en="View Services">ดูรายการบริการ</span></a>
+      </div>
+
+      <div class="hero-frame reveal">
+        <div class="img-box">
+          <img src="https://images.unsplash.com/photo-1674143941110-f7ef253ea1f4?w=900&h=650&fit=crop" alt="ตู้เย็นสีขาวตั้งอยู่ในห้องครัว">
+        </div>
+        <div class="plate-caption">
+          <span data-lang-th="แผ่นภาพที่ 1" data-lang-en="PLATE No. 1">แผ่นภาพที่ 1</span>
+          <span data-lang-th="ตู้เย็นในบ้าน กรุงเทพฯ" data-lang-en="Household Unit, Bangkok">ตู้เย็นในบ้าน กรุงเทพฯ</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHILOSOPHY -->
+  <section class="philosophy">
+    <div class="wrap reveal">
+      <span class="sc" data-lang-th="ปณิธาน" data-lang-en="Philosophy">ปณิธาน</span>
+      <blockquote data-lang-th="“เราไม่ได้ซ่อมเครื่องเย็นให้กลับมาใช้งานเท่านั้น เราซ่อมเพื่อให้มันอยู่กับบ้านคุณไปอีกนาน”" data-lang-en="“We do not merely repair a machine to run again — we repair it to remain a part of your home for years to come.”">“เราไม่ได้ซ่อมเครื่องเย็นให้กลับมาใช้งานเท่านั้น เราซ่อมเพื่อให้มันอยู่กับบ้านคุณไปอีกนาน”</blockquote>
+      <div class="attrib sc" data-lang-th="— นิตยา บุญแสนรัน ผู้ก่อตั้ง" data-lang-en="— Nitaya Boonsaenran, Founder">— นิตยา บุญแสนรัน ผู้ก่อตั้ง</div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="sc" data-lang-th="แผนกบริการ" data-lang-en="Departments of Service">แผนกบริการ</span>
+        <h2 data-lang-th="รายการบริการทั้งหมด" data-lang-en="The Complete Service Catalogue">รายการบริการทั้งหมด</h2>
+        <div class="divider-orn"><span class="ln"></span><i data-lucide="snowflake" width="16" height="16"></i><span class="ln"></span></div>
+      </div>
+    </div>
+    <div class="wrap">
+      <div class="service-grid reveal">
+        <div class="service-card">
+          <div class="num">01</div>
+          <div class="icon-ring"><i data-lucide="thermometer" width="22" height="22"></i></div>
+          <h3 data-lang-th="ตู้เย็นไม่เย็น" data-lang-en="Not Cooling">ตู้เย็นไม่เย็น</h3>
+          <p data-lang-th="ตรวจวัดระบบความเย็นและคอมเพรสเซอร์อย่างละเอียด แก้ไขต้นเหตุที่แท้จริง" data-lang-en="Thorough diagnostics of the cooling system and compressor to resolve the true root cause.">ตรวจวัดระบบความเย็นและคอมเพรสเซอร์อย่างละเอียด แก้ไขต้นเหตุที่แท้จริง</p>
+        </div>
+        <div class="service-card">
+          <div class="num">02</div>
+          <div class="icon-ring"><i data-lucide="droplets" width="22" height="22"></i></div>
+          <h3 data-lang-th="น้ำรั่วซึม" data-lang-en="Water Leakage">น้ำรั่วซึม</h3>
+          <p data-lang-th="แก้ไขปัญหาน้ำหยดใต้ตู้และท่อระบายอุดตัน คืนความสะอาดให้พื้นที่ครัว" data-lang-en="Fixing drip trays and clogged drain lines to restore a clean, dry kitchen floor.">แก้ไขปัญหาน้ำหยดใต้ตู้และท่อระบายอุดตัน คืนความสะอาดให้พื้นที่ครัว</p>
+        </div>
+        <div class="service-card">
+          <div class="num">03</div>
+          <div class="icon-ring"><i data-lucide="volume-2" width="22" height="22"></i></div>
+          <h3 data-lang-th="เสียงดังผิดปกติ" data-lang-en="Unusual Noise">เสียงดังผิดปกติ</h3>
+          <p data-lang-th="ตรวจสอบพัดลม มอเตอร์ และจุดยึดต่าง ๆ ให้ตู้เย็นทำงานเงียบสนิทดังเดิม" data-lang-en="Inspecting fans, motors and mountings so your unit runs silently once more.">ตรวจสอบพัดลม มอเตอร์ และจุดยึดต่าง ๆ ให้ตู้เย็นทำงานเงียบสนิทดังเดิม</p>
+        </div>
+        <div class="service-card">
+          <div class="num">04</div>
+          <div class="icon-ring"><i data-lucide="cpu" width="22" height="22"></i></div>
+          <h3 data-lang-th="ระบบไฟและแผงควบคุม" data-lang-en="Electronics & Control Board">ระบบไฟและแผงควบคุม</h3>
+          <p data-lang-th="ซ่อมแผงวงจร เทอร์โมสตัท และระบบไฟฟ้าโดยช่างผู้เชี่ยวชาญเฉพาะทาง" data-lang-en="Circuit board, thermostat and wiring repair handled by specialist technicians.">ซ่อมแผงวงจร เทอร์โมสตัท และระบบไฟฟ้าโดยช่างผู้เชี่ยวชาญเฉพาะทาง</p>
+        </div>
+        <div class="service-card">
+          <div class="num">05</div>
+          <div class="icon-ring"><i data-lucide="wind" width="22" height="22"></i></div>
+          <h3 data-lang-th="น้ำแข็งเกาะหนา" data-lang-en="Excess Ice Build-up">น้ำแข็งเกาะหนา</h3>
+          <p data-lang-th="ปรับตั้งระบบละลายน้ำแข็งอัตโนมัติ และซีลยางประตูให้แน่นสนิท" data-lang-en="Recalibrating auto-defrost systems and re-sealing door gaskets for a tight fit.">ปรับตั้งระบบละลายน้ำแข็งอัตโนมัติ และซีลยางประตูให้แน่นสนิท</p>
+        </div>
+        <div class="service-card">
+          <div class="num">06</div>
+          <div class="icon-ring"><i data-lucide="calendar-check" width="22" height="22"></i></div>
+          <h3 data-lang-th="ตรวจเช็คตามวาระ" data-lang-en="Scheduled Maintenance">ตรวจเช็คตามวาระ</h3>
+          <p data-lang-th="แผนบำรุงรักษาตู้เย็นและตู้แช่รายปีสำหรับบ้านและร้านค้า" data-lang-en="Annual maintenance plans for household refrigerators and commercial cold cabinets.">แผนบำรุงรักษาตู้เย็นและตู้แช่รายปีสำหรับบ้านและร้านค้า</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CRAFT / ABOUT -->
+  <section>
+    <div class="wrap">
+      <div class="craft reveal">
+        <div class="craft-frame">
+          <div class="img-box">
+            <img src="https://images.unsplash.com/photo-1765696300114-160d3dd6c30e?w=700&h=880&fit=crop" alt="ห้องครัวย้อนยุคแสงนุ่มนวล">
+          </div>
+        </div>
+        <div class="craft-text">
+          <span class="sc" data-lang-th="เรื่องราวของเรา" data-lang-en="Our Story">เรื่องราวของเรา</span>
+          <h2 data-lang-th="จากรุ่นบุกเบิกสู่ปัจจุบัน" data-lang-en="From the Founding Generation to Today">จากรุ่นบุกเบิกสู่ปัจจุบัน</h2>
+          <p data-lang-th="คุณนิตยา บุญแสนรัน เริ่มต้นอาชีพช่างซ่อมเครื่องเย็นในย่านเก่าของกรุงเทพฯ เมื่อปี พ.ศ. 2531 ด้วยความเชื่อว่างานซ่อมที่ดีต้องมาจากความเข้าใจเครื่องจักรอย่างถ่องแท้ ไม่ใช่เพียงเปลี่ยนอะไหล่" data-lang-en="Nitaya Boonsaenran began her career repairing cooling appliances in an old quarter of Bangkok in 1988, believing that true repair comes from deep understanding of the machine — not merely swapping parts.">คุณนิตยา บุญแสนรัน เริ่มต้นอาชีพช่างซ่อมเครื่องเย็นในย่านเก่าของกรุงเทพฯ เมื่อปี พ.ศ. 2531 ด้วยความเชื่อว่างานซ่อมที่ดีต้องมาจากความเข้าใจเครื่องจักรอย่างถ่องแท้ ไม่ใช่เพียงเปลี่ยนอะไหล่</p>
+          <p data-lang-th="ปัจจุบันทีมช่างของเราสืบทอดวิธีการตรวจซ่อมแบบดั้งเดิม ผสานกับความรู้ด้านเครื่องทำความเย็นสมัยใหม่ เพื่อให้ตู้เย็นทุกเครื่องได้รับการดูแลอย่างสมควร" data-lang-en="Today our technicians carry forward that traditional diagnostic method, combined with modern refrigeration knowledge, so every unit receives the care it deserves.">ปัจจุบันทีมช่างของเราสืบทอดวิธีการตรวจซ่อมแบบดั้งเดิม ผสานกับความรู้ด้านเครื่องทำความเย็นสมัยใหม่ เพื่อให้ตู้เย็นทุกเครื่องได้รับการดูแลอย่างสมควร</p>
+          <a href="#contact" class="btn btn-outline"><span data-lang-th="นัดหมายช่าง" data-lang-en="Book a Technician">นัดหมายช่าง</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process" id="process">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="sc" data-lang-th="ขั้นตอนการให้บริการ" data-lang-en="Service Procedure">ขั้นตอนการให้บริการ</span>
+        <h2 data-lang-th="สี่ขั้นตอนสู่ความเย็นที่ไว้วางใจได้" data-lang-en="Four Steps to Trustworthy Cooling">สี่ขั้นตอนสู่ความเย็นที่ไว้วางใจได้</h2>
+        <div class="divider-orn"><span class="ln"></span><i data-lucide="clipboard-list" width="16" height="16"></i><span class="ln"></span></div>
+      </div>
+      <div class="steps reveal">
+        <div class="step">
+          <div class="roman">I</div>
+          <div>
+            <h3 data-lang-th="แจ้งอาการเบื้องต้น" data-lang-en="Report the Symptom">แจ้งอาการเบื้องต้น</h3>
+            <p data-lang-th="โทรหรือแจ้งอาการตู้เย็นผ่านช่องทางที่สะดวก ทีมงานประเมินและนัดวันเข้าตรวจ" data-lang-en="Call or message us describing the issue; our team assesses and schedules a visit.">โทรหรือแจ้งอาการตู้เย็นผ่านช่องทางที่สะดวก ทีมงานประเมินและนัดวันเข้าตรวจ</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="roman">II</div>
+          <div>
+            <h3 data-lang-th="ช่างเข้าตรวจถึงบ้าน" data-lang-en="On-Site Inspection">ช่างเข้าตรวจถึงบ้าน</h3>
+            <p data-lang-th="ช่างผู้เชี่ยวชาญเดินทางถึงหน้าบ้านพร้อมเครื่องมือวัดครบชุด ตรวจอาการอย่างละเอียด" data-lang-en="A specialist arrives with a full set of diagnostic tools for a thorough inspection.">ช่างผู้เชี่ยวชาญเดินทางถึงหน้าบ้านพร้อมเครื่องมือวัดครบชุด ตรวจอาการอย่างละเอียด</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="roman">III</div>
+          <div>
+            <h3 data-lang-th="แจ้งราคาก่อนซ่อมทุกครั้ง" data-lang-en="Quote Before Any Work">แจ้งราคาก่อนซ่อมทุกครั้ง</h3>
+            <p data-lang-th="สรุปอาการ ค่าอะไหล่ และค่าแรงให้ทราบชัดเจน ก่อนดำเนินการซ่อมทุกครั้ง" data-lang-en="A clear breakdown of parts and labour is given before any repair begins.">สรุปอาการ ค่าอะไหล่ และค่าแรงให้ทราบชัดเจน ก่อนดำเนินการซ่อมทุกครั้ง</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="roman">IV</div>
+          <div>
+            <h3 data-lang-th="ซ่อมและรับประกันผลงาน" data-lang-en="Repair & Warranty">ซ่อมและรับประกันผลงาน</h3>
+            <p data-lang-th="ซ่อมด้วยอะไหล่แท้ พร้อมออกใบรับประกันงานซ่อมให้ทุกครั้ง" data-lang-en="Repaired with genuine parts, and every job comes with a written warranty.">ซ่อมด้วยอะไหล่แท้ พร้อมออกใบรับประกันงานซ่อมให้ทุกครั้ง</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats-strip reveal">
+    <div class="stat">
+      <div class="stat-num">38</div>
+      <div class="sc" data-lang-th="ปีแห่งความเชี่ยวชาญ" data-lang-en="Years of Expertise">ปีแห่งความเชี่ยวชาญ</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">12,400+</div>
+      <div class="sc" data-lang-th="เครื่องที่ซ่อมสำเร็จ" data-lang-en="Units Repaired">เครื่องที่ซ่อมสำเร็จ</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">98%</div>
+      <div class="sc" data-lang-th="ลูกค้าพึงพอใจ" data-lang-en="Customer Satisfaction">ลูกค้าพึงพอใจ</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">60</div>
+      <div class="sc" data-lang-th="นาทีตอบกลับเฉลี่ย" data-lang-en="Avg. Response (Minutes)">นาทีตอบกลับเฉลี่ย</div>
+    </div>
+  </div>
+
+  <!-- GALLERY -->
+  <section id="gallery">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="sc" data-lang-th="สมุดบันทึกช่าง" data-lang-en="From the Technician's Ledger">สมุดบันทึกช่าง</span>
+        <h2 data-lang-th="ภาพจากงานจริง" data-lang-en="Plates from the Field">ภาพจากงานจริง</h2>
+        <div class="divider-orn"><span class="ln"></span><i data-lucide="camera" width="16" height="16"></i><span class="ln"></span></div>
+      </div>
+      <div class="gallery-grid reveal">
+        <div class="plate">
+          <div class="img-box"><img src="https://images.unsplash.com/photo-1722888799634-c5093906feae?w=700&h=520&fit=crop" alt="ครัวไม้พร้อมเตาและตู้เย็น"></div>
+          <div class="plate-caption"><span data-lang-th="แผ่นภาพ II" data-lang-en="PLATE II">แผ่นภาพ II</span><span data-lang-th="ครัวบ้านเดี่ยว ทองหล่อ" data-lang-en="Residential Kitchen, Thonglor">ครัวบ้านเดี่ยว ทองหล่อ</span></div>
+        </div>
+        <div class="plate">
+          <div class="img-box"><img src="https://images.unsplash.com/photo-1755328127111-f8d770031f6c?w=700&h=520&fit=crop" alt="แสงแดดสาดผ่านผนังลายและเครื่องใช้ในครัว"></div>
+          <div class="plate-caption"><span data-lang-th="แผ่นภาพ III" data-lang-en="PLATE III">แผ่นภาพ III</span><span data-lang-th="ครัวคอนโด สุขุมวิท" data-lang-en="Condo Kitchen, Sukhumvit">ครัวคอนโด สุขุมวิท</span></div>
+        </div>
+        <div class="plate">
+          <div class="img-box"><img src="https://images.unsplash.com/photo-1467139840664-96b244a66825?w=700&h=520&fit=crop" alt="เครื่องมือช่างหลายชนิดวางเรียงกัน"></div>
+          <div class="plate-caption"><span data-lang-th="แผ่นภาพ IV" data-lang-en="PLATE IV">แผ่นภาพ IV</span><span data-lang-th="กระเป๋าเครื่องมือประจำช่าง" data-lang-en="The Technician's Tool Kit">กระเป๋าเครื่องมือประจำช่าง</span></div>
+        </div>
+        <div class="plate">
+          <div class="img-box"><img src="https://images.unsplash.com/photo-1615467517177-3157c0cd7ff5?w=700&h=520&fit=crop" alt="ช่างถือเครื่องมือโลหะสีดำ"></div>
+          <div class="plate-caption"><span data-lang-th="แผ่นภาพ V" data-lang-en="PLATE V">แผ่นภาพ V</span><span data-lang-th="ระหว่างการซ่อมหน้างาน" data-lang-en="Mid-Repair, On Site">ระหว่างการซ่อมหน้างาน</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="reviews">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="sc" data-lang-th="เสียงจากลูกค้า" data-lang-en="Client Testimonials">เสียงจากลูกค้า</span>
+        <h2 data-lang-th="คำบอกเล่าจากบ้านที่เราดูแล" data-lang-en="Words from the Homes We Serve">คำบอกเล่าจากบ้านที่เราดูแล</h2>
+        <div class="divider-orn"><span class="ln"></span><i data-lucide="quote" width="16" height="16"></i><span class="ln"></span></div>
+      </div>
+      <div class="testi-grid reveal">
+        <div class="testi">
+          <i data-lucide="quote" width="22" height="22" class="q-icon"></i>
+          <p class="quote" data-lang-th="ช่างมาตรงเวลา อธิบายอาการชัดเจน และซ่อมเสร็จภายในวันเดียว ตู้เย็นเย็นเหมือนใหม่" data-lang-en="The technician arrived on time, explained everything clearly, and finished the same day. The fridge cools like new again.">ช่างมาตรงเวลา อธิบายอาการชัดเจน และซ่อมเสร็จภายในวันเดียว ตู้เย็นเย็นเหมือนใหม่</p>
+          <div class="who">
+            <img src="https://images.unsplash.com/photo-1755054954482-3ee45c0fac16?w=120&h=120&fit=crop" alt="ลูกค้า">
+            <div><div class="name">คุณสมหญิง ต.</div><div class="role" data-lang-th="บ้านเดี่ยว บางนา" data-lang-en="Homeowner, Bangna">บ้านเดี่ยว บางนา</div></div>
+          </div>
+        </div>
+        <div class="testi">
+          <i data-lucide="quote" width="22" height="22" class="q-icon"></i>
+          <p class="quote" data-lang-th="เป็นร้านซ่อมที่ให้ราคาชัดเจนก่อนซ่อมจริง ไม่มีค่าใช้จ่ายแอบแฝง ไว้ใจได้มาก" data-lang-en="They gave a clear quote before starting — no hidden charges. Very trustworthy.">เป็นร้านซ่อมที่ให้ราคาชัดเจนก่อนซ่อมจริง ไม่มีค่าใช้จ่ายแอบแฝง ไว้ใจได้มาก</p>
+          <div class="who">
+            <img src="https://images.unsplash.com/photo-1645564977352-10a805bbdc1b?w=120&h=120&fit=crop" alt="ลูกค้า">
+            <div><div class="name">คุณประเสริฐ ว.</div><div class="role" data-lang-th="ร้านค้า ตลาดพลู" data-lang-en="Shop Owner, Talat Plu">ร้านค้า ตลาดพลู</div></div>
+          </div>
+        </div>
+        <div class="testi">
+          <i data-lucide="quote" width="22" height="22" class="q-icon"></i>
+          <p class="quote" data-lang-th="ใช้บริการมาสามครั้งแล้ว ทุกครั้งช่างชุดเดิม จำอาการเก่าได้ ดูแลเหมือนเป็นลูกค้าประจำจริง ๆ" data-lang-en="Used their service three times now — the same technician remembers the fridge's history each time. Feels like a real long-term relationship.">ใช้บริการมาสามครั้งแล้ว ทุกครั้งช่างชุดเดิม จำอาการเก่าได้ ดูแลเหมือนเป็นลูกค้าประจำจริง ๆ</p>
+          <div class="who">
+            <img src="https://images.unsplash.com/photo-1656354637194-8dc7670e6bcc?w=120&h=120&fit=crop" alt="ลูกค้า">
+            <div><div class="name">คุณอรุณี ก.</div><div class="role" data-lang-th="คอนโด อารีย์" data-lang-en="Condo Resident, Ari">คอนโด อารีย์</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COVERAGE -->
+  <section class="coverage">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="sc" data-lang-th="พื้นที่ให้บริการ" data-lang-en="Service Coverage">พื้นที่ให้บริการ</span>
+        <h2 data-lang-th="ให้บริการครอบคลุมทั่วกรุงเทพฯ และปริมณฑล" data-lang-en="Serving Bangkok and Surrounding Provinces">ให้บริการครอบคลุมทั่วกรุงเทพฯ และปริมณฑล</h2>
+        <div class="divider-orn"><span class="ln"></span><i data-lucide="map-pin" width="16" height="16"></i><span class="ln"></span></div>
+      </div>
+      <ul class="area-list reveal">
+        <li><i data-lucide="check"></i><span data-lang-th="สาทร - สีลม" data-lang-en="Sathorn - Silom">สาทร - สีลม</span></li>
+        <li><i data-lucide="check"></i><span data-lang-th="ทองหล่อ - เอกมัย" data-lang-en="Thonglor - Ekkamai">ทองหล่อ - เอกมัย</span></li>
+        <li><i data-lucide="check"></i><span data-lang-th="สุขุมวิท" data-lang-en="Sukhumvit">สุขุมวิท</span></li>
+        <li><i data-lucide="check"></i><span data-lang-th="บางนา - ศรีนครินทร์" data-lang-en="Bangna - Srinakarin">บางนา - ศรีนครินทร์</span></li>
+        <li><i data-lucide="check"></i><span data-lang-th="อารีย์ - ลาดพร้าว" data-lang-en="Ari - Ladprao">อารีย์ - ลาดพร้าว</span></li>
+        <li><i data-lucide="check"></i><span data-lang-th="นนทบุรี" data-lang-en="Nonthaburi">นนทบุรี</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="sc" data-lang-th="ติดต่อเรา" data-lang-en="Get in Touch">ติดต่อเรา</span>
+        <h2 data-lang-th="นัดหมายช่างวันนี้" data-lang-en="Book a Technician Today">นัดหมายช่างวันนี้</h2>
+        <div class="divider-orn"><span class="ln"></span><i data-lucide="phone-call" width="16" height="16"></i><span class="ln"></span></div>
+      </div>
+      <div class="contact-grid reveal">
+        <div class="contact-info">
+          <h3 data-lang-th="ข้อมูลการติดต่อ" data-lang-en="Contact Information">ข้อมูลการติดต่อ</h3>
+          <div class="info-row">
+            <i data-lucide="phone" width="18" height="18"></i>
+            <div><div class="label" data-lang-th="โทรศัพท์" data-lang-en="Phone">โทรศัพท์</div><div class="val">081-234-5678</div></div>
+          </div>
+          <div class="info-row">
+            <i data-lucide="mail" width="18" height="18"></i>
+            <div><div class="label" data-lang-th="อีเมล" data-lang-en="Email">อีเมล</div><div class="val">contact@nitayarepair.co.th</div></div>
+          </div>
+          <div class="info-row">
+            <i data-lucide="map-pin" width="18" height="18"></i>
+            <div><div class="label" data-lang-th="ที่อยู่ร้าน" data-lang-en="Workshop Address">ที่อยู่ร้าน</div><div class="val" data-lang-th="45 ซอยประชาอุทิศ เขตห้วยขวาง กรุงเทพฯ 10310" data-lang-en="45 Pracha Uthit Soi, Huai Khwang, Bangkok 10310">45 ซอยประชาอุทิศ เขตห้วยขวาง กรุงเทพฯ 10310</div></div>
+          </div>
+          <div class="info-row">
+            <i data-lucide="clock" width="18" height="18"></i>
+            <div><div class="label" data-lang-th="เวลาทำการ" data-lang-en="Working Hours">เวลาทำการ</div><div class="val" data-lang-th="ทุกวัน 08:00 - 20:00 น." data-lang-en="Daily 08:00 - 20:00">ทุกวัน 08:00 - 20:00 น.</div></div>
+          </div>
+        </div>
+        <form class="form-box" onsubmit="event.preventDefault();">
+          <h3 data-lang-th="แบบฟอร์มนัดหมาย" data-lang-en="Booking Form">แบบฟอร์มนัดหมาย</h3>
+          <div class="field">
+            <label data-lang-th="ชื่อ - นามสกุล" data-lang-en="Full Name">ชื่อ - นามสกุล</label>
+            <input type="text" placeholder="">
+          </div>
+          <div class="field">
+            <label data-lang-th="เบอร์โทรศัพท์" data-lang-en="Phone Number">เบอร์โทรศัพท์</label>
+            <input type="tel" placeholder="">
+          </div>
+          <div class="field">
+            <label data-lang-th="อาการของตู้เย็น" data-lang-en="Describe the Issue">อาการของตู้เย็น</label>
+            <textarea></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary"><span data-lang-th="ส่งคำขอนัดหมาย" data-lang-en="Send Request">ส่งคำขอนัดหมาย</span></button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="brand">นิตยา บุญแสนรัน</div>
+    <div class="sc" data-lang-th="ช่างซ่อมตู้เย็นถึงบ้าน ตั้งแต่ พ.ศ. 2531" data-lang-en="On-Site Refrigerator Repair Since 1988">ช่างซ่อมตู้เย็นถึงบ้าน ตั้งแต่ พ.ศ. 2531</div>
+    <div class="foot-links">
+      <a href="#services" data-lang-th="บริการ" data-lang-en="Services">บริการ</a>
+      <a href="#process" data-lang-th="ขั้นตอนงาน" data-lang-en="Process">ขั้นตอนงาน</a>
+      <a href="#gallery" data-lang-th="ผลงาน" data-lang-en="Gallery">ผลงาน</a>
+      <a href="#reviews" data-lang-th="รีวิว" data-lang-en="Reviews">รีวิว</a>
+      <a href="#contact" data-lang-th="ติดต่อ" data-lang-en="Contact">ติดต่อ</a>
+    </div>
+    <div class="foot-social">
+      <a href="#" aria-label="line"><i data-lucide="message-circle" width="16" height="16"></i></a>
+      <a href="#" aria-label="facebook"><i data-lucide="facebook" width="16" height="16"></i></a>
+      <a href="#" aria-label="instagram"><i data-lucide="instagram" width="16" height="16"></i></a>
+    </div>
+    <hr class="rule" style="max-width:200px;margin:0 auto 22px;">
+    <div class="copy">&copy; 2569 นิตยา บุญแสนรัน. <span data-lang-th="สงวนลิขสิทธิ์ทุกประการ" data-lang-en="All rights reserved.">สงวนลิขสิทธิ์ทุกประการ</span></div>
+  </div>
+</footer>
+
+<script>
+  // header shrink
+  var header = document.getElementById('site-header');
+  window.addEventListener('scroll', function(){
+    if(window.scrollY > 40){ header.classList.add('scrolled'); }
+    else{ header.classList.remove('scrolled'); }
+  });
+
+  // mobile menu
+  var burger = document.getElementById('burgerBtn');
+  var menu = document.getElementById('mobileMenu');
+  var overlay = document.getElementById('menuOverlay');
+  function closeMenu(){ menu.classList.remove('open'); overlay.classList.remove('open'); }
+  burger.addEventListener('click', function(){
+    menu.classList.toggle('open');
+    overlay.classList.toggle('open');
+  });
+  overlay.addEventListener('click', closeMenu);
+  menu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closeMenu); });
+
+  // scroll reveal
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('in-view'); obs.unobserve(e.target); }
+    });
+  }, {threshold: 0.15});
+  document.querySelectorAll('.reveal').forEach(function(el){ obs.observe(el); });
+
+  lucide.createIcons();
+</script>
+
+<script>
+(function(){var K='site-lang',L=localStorage.getItem(K)||'th';function S(l){L=l;localStorage.setItem(K,l);document.documentElement.lang=l;document.querySelectorAll('[data-lang-th]').forEach(function(e){var t=e.getAttribute('data-lang-'+l);if(t!==null){if(/[<&]/.test(t)){e.innerHTML=t}else{e.textContent=t}}});var lb=document.querySelector('.lang-sw__label');if(lb){lb.textContent=l.toUpperCase()}}var sw=document.querySelector('.lang-sw');if(sw){sw.addEventListener('click',function(){S(L==='th'?'en':'th')});sw.style.cursor='pointer'}if(L!=='th'){S(L)}})();
+</script>
+
+</body>
+</html>
