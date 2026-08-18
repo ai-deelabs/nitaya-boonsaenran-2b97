@@ -3,12 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>นิตยา บุญแสนรัน — ซ่อมตู้เย็นถึงบ้าน บริการระดับพรีเมียม</title>
-<meta name="description" content="นิตยา บุญแสนรัน บริการซ่อมตู้เย็นและระบบทำความเย็นถึงบ้าน โดยทีมช่างผู้เชี่ยวชาญ ด้วยความแม่นยำและความเงียบสงบระดับพรีเมียม">
+<title>ช่างวัฒนา สมาร์ทอินเตอร์คูล — ซ่อมตู้เย็น ตู้แช่ นอกสถานที่ กรุงเทพฯ ปริมณฑล</title>
+<meta name="description" content="บริการซ่อมตู้เย็น ตู้แช่ นอกสถานที่ กรุงเทพฯ และปริมณฑล โดยช่างมืออาชีพ ประสบการณ์กว่า 10 ปี ถึงบ้านภายใน 1 ชั่วโมง แจ้งราคาก่อนซ่อม รับประกันผลงาน 3 เดือน ตรวจเช็คฟรี โทร 095-628-6980">
+<meta name="keywords" content="ซ่อมตู้เย็น กรุงเทพ, ช่างตู้เย็น นอกสถานที่, ซ่อมตู้แช่ กรุงเทพ, ช่างซ่อมตู้เย็นนอกสถานที่, ซ่อมตู้เย็นถึงบ้าน, ซ่อมตู้แช่แข็ง, ซ่อมคอมเพรสเซอร์, ค่าบริการซ่อมตู้เย็น, ช่างวัฒนา, สมาร์ทอินเตอร์คูล">
+<meta name="theme-color" content="#0A0A0C">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ช่างวัฒนา สมาร์ทอินเตอร์คูล — ซ่อมตู้เย็น ตู้แช่ นอกสถานที่ กรุงเทพฯ ปริมณฑล">
+<meta property="og:description" content="ซ่อมตู้เย็น ตู้แช่ นอกสถานที่ โดยช่างมืออาชีพ ประสบการณ์กว่า 10 ปี รวดเร็ว ราคายุติธรรม รับประกันผลงาน ตรวจเช็คฟรี">
+<meta property="og:image" content="assets/logo/logo.png">
+<link rel="icon" href="assets/logo/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Pridi:wght@200;300;400;500;600;700&family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<script src="https://unpkg.com/lucide@0.460.0"></script>
+<script src="https://unpkg.com/lucide@0.460.0" defer></script>
 <style>
   :root{
     --background:#0A0A0C;
@@ -310,12 +317,16 @@
   }
   .acc-item.open .acc-icon{transform:rotate(45deg);color:var(--primary);}
   .acc-panel{
-    max-height:0;
-    overflow:hidden;
-    transition:max-height .4s ease;
+    display:grid;
+    grid-template-rows:0fr;
+    transition:grid-template-rows .4s ease;
   }
+  .acc-item.open .acc-panel{grid-template-rows:1fr;}
+  .acc-panel > .acc-panel-inner{overflow:hidden;min-height:0;}
+  .acc-item.open .acc-panel-inner{padding-bottom:30px;}
   .acc-panel-inner{
-    padding:0 0 30px 68px;
+    padding:0 0 0 68px;
+    transition:padding-bottom .4s ease;
     color:var(--muted);
     max-width:640px;
     font-size:.98rem;
@@ -520,10 +531,11 @@
     border-bottom:1px solid var(--border);
     margin-bottom:26px;
   }
-  .footer-brand .logo{font-size:1.4rem;margin-bottom:14px;display:block;}
+  .footer-brand .logo{display:flex;align-items:center;gap:12px;margin-bottom:18px;}
   .footer-brand p{color:var(--muted);max-width:340px;font-size:.92rem;}
   .footer-links{display:flex;flex-direction:column;gap:14px;}
   .footer-links a{color:var(--muted);font-size:.92rem;transition:color .3s ease;}
+  .footer-links span{color:var(--muted);font-size:.92rem;}
   .footer-links a:hover{color:var(--primary);}
   .footer-cols{display:flex;flex-wrap:wrap;gap:44px;}
   .footer-col h4{font-size:.78rem;color:var(--foreground);text-transform:uppercase;margin-bottom:16px;}
@@ -542,7 +554,7 @@
     .nav-links{display:flex;}
     .hamburger{display:none;}
     .hero{grid-template-columns:1.1fr 1fr;padding-top:0;}
-    .hero-left{padding:0 0 0 64px;}
+    .hero-left{padding:132px 0 76px 64px;}
     .hero-right{min-height:100vh;}
     .stats-grid{grid-template-columns:repeat(4,1fr);}
     .contact-grid{grid-template-columns:1fr 1fr;}
@@ -556,53 +568,291 @@
     .hero-headline{padding-top:.15em;}
   }
   @media (min-width:1024px){
-    .hero-left{padding:0 0 0 96px;}
+    .hero-left{padding:132px 0 76px 96px;}
   }
+
+  /* ---------- BRAND LOGO ---------- */
+  .logo{display:flex;align-items:center;gap:12px;}
+  .logo-mark{
+    width:44px;height:44px;border-radius:50%;flex-shrink:0;
+    box-shadow:0 0 0 1px var(--border), 0 8px 26px rgba(127,219,255,.14);
+  }
+  .logo-text{display:flex;flex-direction:column;line-height:1.3;}
+  .logo-text b{font-family:var(--font-heading);font-size:1.02rem;font-weight:500;color:var(--foreground);}
+  .logo-text small{font-family:var(--font-body);font-size:.66rem;color:var(--muted);letter-spacing:.02em;}
+  .nav.scrolled .logo-mark{width:38px;height:38px;}
+  .nav-call{
+    display:none;align-items:center;gap:8px;
+    font-size:.85rem;font-weight:600;color:var(--foreground);
+    border:1px solid var(--border);border-radius:999px;
+    padding:.55em 1.15em;transition:border-color .3s ease,color .3s ease;
+  }
+  .nav-call svg{color:var(--primary);}
+  .nav-call:hover{border-color:var(--primary);color:var(--primary);}
+  @media (min-width:900px){ .nav-call{display:inline-flex;} }
+
+  /* ---------- HERO EXTRAS ---------- */
+  .hero-badges{display:flex;flex-wrap:wrap;gap:14px 28px;margin-top:34px;}
+  .hero-badge{display:flex;align-items:center;gap:10px;font-size:.86rem;color:var(--muted);}
+  .hero-badge svg{color:var(--primary);flex-shrink:0;}
+  .hero-badge b{color:var(--foreground);font-weight:600;}
+
+  /* ---------- SERVICE LIST INSIDE ACCORDION ---------- */
+  .acc-list{display:flex;flex-wrap:wrap;gap:10px 12px;margin-top:18px;}
+  .acc-list span{
+    border:1px solid var(--border);border-radius:999px;
+    padding:.42em 1em;font-size:.82rem;color:var(--muted);
+  }
+
+  /* ---------- PRICING ---------- */
+  .pricing{padding:110px 0;background:var(--background);}
+  .pricing-head{margin-bottom:8px;}
+  .pricing-head h2{font-size:clamp(1.9rem,5vw,3rem);font-weight:300;max-width:640px;margin-bottom:20px;}
+  .pricing-note{color:var(--muted);max-width:660px;font-size:.98rem;}
+  .pricing-legend{display:flex;flex-wrap:wrap;gap:10px;margin:28px 0 46px;}
+  .legend-chip{
+    display:inline-flex;align-items:center;gap:9px;
+    border:1px solid var(--border);border-radius:999px;
+    padding:.5em 1.1em;font-size:.8rem;color:var(--muted);
+  }
+  .legend-chip svg{color:var(--primary);flex-shrink:0;}
+  .pacc-item{border-bottom:1px solid var(--border);}
+  .pacc-item:first-child{border-top:1px solid var(--border);}
+  .pacc-head{
+    width:100%;display:grid;
+    grid-template-columns:auto auto 1fr auto;
+    gap:8px 16px;align-items:center;
+    padding:20px 0;text-align:left;color:var(--foreground);
+  }
+  .pacc-thumb{
+    grid-column:1;grid-row:1 / span 2;
+    width:60px;height:60px;flex-shrink:0;
+    border:1px solid var(--border);border-radius:4px;
+    overflow:hidden;background:var(--card);
+    align-self:center;
+  }
+  .pacc-thumb img{
+    width:100%;height:100%;object-fit:cover;
+    filter:grayscale(.12) brightness(.94);
+    transition:filter .35s ease, transform .5s ease;
+  }
+  .pacc-item.open .pacc-thumb, .pacc-head:hover .pacc-thumb{border-color:var(--primary);}
+  .pacc-item.open .pacc-thumb img, .pacc-head:hover .pacc-thumb img{filter:none;transform:scale(1.06);}
+  .pacc-num{font-family:var(--font-heading);color:var(--primary);font-size:.95rem;min-width:30px;grid-column:2;grid-row:1;}
+  .pacc-title{
+    grid-column:3;grid-row:1;
+    font-family:var(--font-heading);
+    font-size:clamp(1.02rem,2.8vw,1.35rem);
+    font-weight:400;line-height:1.5;padding-top:.12em;
+  }
+  .pacc-from{
+    grid-column:2 / span 3;grid-row:2;
+    display:flex;align-items:baseline;gap:7px;
+    font-size:.78rem;color:var(--muted);text-transform:uppercase;
+  }
+  .pacc-from b{font-family:var(--font-heading);font-size:1.15rem;font-weight:500;color:var(--accent);text-transform:none;}
+  .pacc-icon{grid-column:4;grid-row:1;color:var(--muted);transition:transform .35s ease,color .35s ease;flex-shrink:0;justify-self:end;}
+  .pacc-item.open .pacc-icon{transform:rotate(45deg);color:var(--primary);}
+  .pacc-item.open .pacc-title{color:var(--primary);}
+  .pacc-panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s ease;}
+  .pacc-item.open .pacc-panel{grid-template-rows:1fr;}
+  .pacc-panel > div{overflow:hidden;}
+  .pacc-body{display:grid;gap:24px;padding:4px 0 38px;}
+  .pacc-media img{
+    width:100%;height:200px;object-fit:cover;border-radius:4px;
+    border:1px solid var(--border);filter:grayscale(.15) brightness(.9) contrast(1.04);
+  }
+  .pacc-table-wrap{overflow-x:auto;}
+  .ptable{width:100%;border-collapse:collapse;font-size:.92rem;}
+  .ptable th{
+    text-align:left;font-family:var(--font-body);font-weight:600;
+    font-size:.7rem;text-transform:uppercase;color:var(--primary);
+    padding:0 16px 12px 0;border-bottom:1px solid var(--border);white-space:nowrap;
+  }
+  html[lang="en"] .ptable th{letter-spacing:.1em;}
+  .ptable td{
+    padding:14px 16px 14px 0;color:var(--muted);vertical-align:top;
+    border-bottom:1px solid rgba(35,38,48,.75);
+  }
+  .ptable td:first-child{color:var(--foreground);}
+  .ptable .cell-price{color:var(--accent);font-weight:600;white-space:nowrap;}
+  .ptable tbody tr:last-child td{border-bottom:none;}
+  .pricing-foot{margin-top:38px;color:var(--muted);font-size:.85rem;max-width:700px;}
+  @media (min-width:768px){
+    .pacc-head{grid-template-columns:auto auto 1fr auto auto;gap:22px;padding:22px 0;}
+    .pacc-thumb{grid-row:1;width:74px;height:74px;}
+    .pacc-from{grid-column:4;grid-row:1;justify-content:flex-end;}
+    .pacc-icon{grid-column:5;grid-row:1;}
+  }
+  @media (min-width:900px){
+    .pacc-body{grid-template-columns:290px 1fr;gap:34px;align-items:start;}
+    .pacc-media img{height:230px;}
+  }
+  @media (max-width:639px){
+    .ptable thead{display:none;}
+    .ptable, .ptable tbody, .ptable tr, .ptable td{display:block;width:100%;}
+    .ptable tr{border:1px solid var(--border);border-radius:4px;padding:16px;margin-bottom:12px;}
+    .ptable td{border:none;padding:5px 0;display:flex;justify-content:space-between;gap:18px;}
+    .ptable td:first-child{
+      display:block;font-family:var(--font-heading);
+      padding-bottom:11px;margin-bottom:7px;border-bottom:1px solid var(--border);
+    }
+    .ptable td:not(:first-child)::before{content:attr(data-label);color:var(--muted);font-size:.78rem;}
+  }
+
+  /* ---------- GALLERY ---------- */
+  .gallery{padding:100px 0;background:var(--bg-accent);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+  .gallery-head{margin-bottom:44px;}
+  .gallery-head h2{font-size:clamp(1.9rem,5vw,3rem);font-weight:300;max-width:640px;}
+  .gallery-note{color:var(--muted);max-width:620px;margin-top:16px;font-size:.98rem;}
+  .gal-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
+  .gal-item{
+    display:block;padding:0;overflow:hidden;border-radius:3px;
+    border:1px solid var(--border);background:var(--card);position:relative;
+  }
+  .gal-item img{
+    width:100%;aspect-ratio:3/4;object-fit:cover;
+    filter:grayscale(.22) brightness(.84) contrast(1.05);
+    transition:transform .55s ease, filter .55s ease;
+  }
+  .gal-item:hover img{transform:scale(1.07);filter:grayscale(0) brightness(.98);}
+  .gal-item::after{
+    content:'';position:absolute;inset:0;
+    box-shadow:inset 0 0 0 1px transparent;transition:box-shadow .3s ease;
+  }
+  .gal-item:hover::after{box-shadow:inset 0 0 0 1px var(--primary);}
+  .gal-item.is-hidden{display:none;}
+  .gal-more{display:flex;justify-content:center;margin-top:34px;}
+  @media (min-width:640px){ .gal-grid{grid-template-columns:repeat(3,1fr);gap:14px;} }
+  @media (min-width:1024px){ .gal-grid{grid-template-columns:repeat(4,1fr);} }
+
+  .lightbox{
+    position:fixed;inset:0;z-index:300;
+    background:rgba(6,7,9,.95);backdrop-filter:blur(8px);
+    display:none;align-items:center;justify-content:center;padding:26px;
+  }
+  .lightbox.open{display:flex;}
+  .lightbox img{max-width:min(94vw,860px);max-height:80vh;object-fit:contain;border:1px solid var(--border);border-radius:3px;}
+  .lb-btn{
+    position:absolute;width:48px;height:48px;
+    display:flex;align-items:center;justify-content:center;
+    color:var(--foreground);border:1px solid var(--border);border-radius:50%;
+    background:rgba(20,21,26,.85);transition:border-color .3s ease,color .3s ease;
+  }
+  .lb-btn:hover{border-color:var(--primary);color:var(--primary);}
+  .lb-close{top:20px;right:20px;}
+  .lb-prev{left:14px;top:50%;transform:translateY(-50%);}
+  .lb-next{right:14px;top:50%;transform:translateY(-50%);}
+  .lb-count{position:absolute;bottom:22px;left:0;right:0;text-align:center;color:var(--muted);font-size:.82rem;}
+
+  /* ---------- ARTICLE ---------- */
+  .article{padding:110px 0;background:var(--background);}
+  .article-head{margin-bottom:40px;}
+  .article-head h2{font-size:clamp(1.9rem,5vw,3rem);font-weight:300;max-width:700px;}
+  .article-body{max-width:840px;}
+  .article-body h3{font-size:clamp(1.2rem,3.4vw,1.6rem);font-weight:400;color:var(--foreground);margin:46px 0 16px;padding-top:.2em;}
+  .article-body p{color:var(--muted);font-size:.98rem;margin-bottom:16px;}
+  .article-list{display:flex;flex-direction:column;gap:14px;margin:22px 0 6px;}
+  .article-list li{display:flex;gap:14px;color:var(--muted);font-size:.96rem;line-height:1.85;}
+  .article-list li svg{color:var(--primary);flex-shrink:0;margin-top:8px;}
+  .article-list b{color:var(--foreground);font-weight:600;}
+  .article-cta{
+    margin-top:46px;padding:30px;border:1px solid var(--border);border-radius:6px;
+    background:var(--card);display:flex;flex-direction:column;gap:20px;
+  }
+  .article-cta p{margin:0;}
+  .article-cta .btn{white-space:nowrap;}
+  @media (min-width:768px){
+    .article-cta{flex-direction:row;align-items:center;justify-content:space-between;gap:32px;}
+  }
+
+  /* ---------- CONTACT EXTRAS ---------- */
+  .contact-info-item a.value{transition:color .3s ease;}
+  .contact-info-item a.value:hover{color:var(--primary);}
+  .form-done{
+    display:none;border:1px solid var(--primary);border-radius:6px;
+    padding:30px;background:rgba(127,219,255,.06);
+  }
+  .form-done.show{display:block;}
+  .form-done h3{font-size:1.25rem;font-weight:500;margin-bottom:12px;}
+  .form-done p{color:var(--muted);font-size:.95rem;margin-bottom:22px;}
+  .form-done .done-ctas{display:flex;flex-wrap:wrap;gap:12px;}
+
+  /* ---------- FLOATING ACTIONS ---------- */
+  .fab{position:fixed;right:16px;bottom:16px;z-index:150;display:flex;flex-direction:column;gap:10px;}
+  .fab a{
+    width:52px;height:52px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 10px 30px rgba(0,0,0,.5);
+    transition:transform .3s ease;
+  }
+  .fab a:hover{transform:translateY(-3px);}
+  .fab-call{background:var(--primary);color:#0A0A0C;}
+  .fab-line{background:#06C755;color:#FFFFFF;}
+  @media (min-width:768px){ .fab{right:24px;bottom:24px;} }
 </style>
 </head>
 <body>
 
+<header>
 <nav class="nav" id="nav">
-  <div class="logo">นิตยา<span>·</span>บุญแสนรัน</div>
+  <a class="logo" href="#top" aria-label="สมาร์ทอินเตอร์คูล ซ่อมตู้เย็นนอกสถานที่">
+    <img class="logo-mark" src="assets/logo/logo.png" alt="โลโก้ สมาร์ทอินเตอร์คูล" width="44" height="44">
+    <span class="logo-text">
+      <b>สมาร์ทอินเตอร์คูล</b>
+      <small data-lang-th="ช่างวัฒนา · ซ่อมตู้เย็นนอกสถานที่" data-lang-en="Chang Watthana · On-Site Repair">ช่างวัฒนา · ซ่อมตู้เย็นนอกสถานที่</small>
+    </span>
+  </a>
   <div class="nav-links">
     <a class="nav-link" href="#services" data-lang-th="บริการ" data-lang-en="Services">บริการ</a>
+    <a class="nav-link" href="#pricing" data-lang-th="ค่าบริการ" data-lang-en="Rates">ค่าบริการ</a>
+    <a class="nav-link" href="#gallery" data-lang-th="ผลงาน" data-lang-en="Our Work">ผลงาน</a>
     <a class="nav-link" href="#process" data-lang-th="กระบวนการ" data-lang-en="Process">กระบวนการ</a>
-    <a class="nav-link" href="#trust" data-lang-th="ความไว้วางใจ" data-lang-en="Trust">ความไว้วางใจ</a>
-    <a class="nav-link" href="#testimonials" data-lang-th="ลูกค้า" data-lang-en="Clients">ลูกค้า</a>
+    <a class="nav-link" href="#article" data-lang-th="บทความ" data-lang-en="Guide">บทความ</a>
     <a class="nav-link" href="#contact" data-lang-th="ติดต่อ" data-lang-en="Contact">ติดต่อ</a>
   </div>
   <div class="nav-right">
-    <div class="lang-sw"><i data-lucide="globe" width="14" height="14"></i><span class="lang-sw__label">TH</span></div>
+    <a class="nav-call" href="tel:0956286980"><i data-lucide="phone" width="14" height="14"></i>095-628-6980</a>
+    <button class="lang-sw" type="button" aria-label="Switch language / เปลี่ยนภาษา"><i data-lucide="globe" width="14" height="14"></i><span class="lang-sw__label">TH</span></button>
     <button class="hamburger" id="openMenu" aria-label="Open menu"><i data-lucide="menu"></i></button>
   </div>
 </nav>
+</header>
 
 <div class="mobile-panel" id="mobilePanel">
   <button class="mobile-panel-close" id="closeMenu" aria-label="Close menu"><i data-lucide="x"></i></button>
   <a href="#services" data-lang-th="บริการ" data-lang-en="Services">บริการ</a>
+  <a href="#pricing" data-lang-th="ค่าบริการ" data-lang-en="Rates">ค่าบริการ</a>
+  <a href="#gallery" data-lang-th="ผลงาน" data-lang-en="Our Work">ผลงาน</a>
   <a href="#process" data-lang-th="กระบวนการ" data-lang-en="Process">กระบวนการ</a>
-  <a href="#trust" data-lang-th="ความไว้วางใจ" data-lang-en="Trust">ความไว้วางใจ</a>
-  <a href="#testimonials" data-lang-th="ลูกค้า" data-lang-en="Clients">ลูกค้า</a>
+  <a href="#article" data-lang-th="บทความ" data-lang-en="Guide">บทความ</a>
   <a href="#contact" data-lang-th="ติดต่อ" data-lang-en="Contact">ติดต่อ</a>
 </div>
 
-<section class="hero">
+<main>
+
+<section class="hero" id="top">
   <div class="hero-left">
-    <span class="eyebrow" data-lang-th="ซ่อมตู้เย็นถึงบ้าน · บริการระดับพรีเมียม" data-lang-en="On-Site Refrigerator Care · Premium Service">ซ่อมตู้เย็นถึงบ้าน · บริการระดับพรีเมียม</span>
+    <span class="eyebrow" data-lang-th="ซ่อมตู้เย็น ตู้แช่ นอกสถานที่ · กรุงเทพฯ–ปริมณฑล" data-lang-en="On-Site Refrigerator &amp; Cooler Repair · Bangkok &amp; Vicinity">ซ่อมตู้เย็น ตู้แช่ นอกสถานที่ · กรุงเทพฯ–ปริมณฑล</span>
     <h1 class="hero-headline">
       <span data-lang-th="ความเงียบ" data-lang-en="Silence">ความเงียบ</span><br>
       <span class="hl-accent" data-lang-th="คือสัญญาณ" data-lang-en="is the mark">คือสัญญาณ</span><br>
       <span data-lang-th="ของความสมบูรณ์แบบ" data-lang-en="of perfection">ของความสมบูรณ์แบบ</span>
     </h1>
-    <p class="hero-sub" data-lang-th="ทีมช่างผู้เชี่ยวชาญของนิตยา บุญแสนรัน ดูแลตู้เย็นและระบบความเย็นของคุณด้วยความแม่นยำ เข้าใจในทุกรายละเอียด เพื่อคืนความเงียบสงบให้บ้านของคุณอีกครั้ง" data-lang-en="The specialist technicians of นิตยา บุญแสนรัน care for your refrigeration systems with precision and quiet expertise — restoring calm to every home we visit.">ทีมช่างผู้เชี่ยวชาญของนิตยา บุญแสนรัน ดูแลตู้เย็นและระบบความเย็นของคุณด้วยความแม่นยำ เข้าใจในทุกรายละเอียด เพื่อคืนความเงียบสงบให้บ้านของคุณอีกครั้ง</p>
+    <p class="hero-sub" data-lang-th="ช่างวัฒนา — สมาร์ทอินเตอร์คูล ให้บริการซ่อมตู้เย็นและตู้แช่นอกสถานที่ ด้วยประสบการณ์กว่า 10 ปี ถึงบ้านคุณภายใน 1 ชั่วโมง แจ้งราคาก่อนซ่อมทุกครั้ง รับประกันผลงานถึง 3 เดือน" data-lang-en="Chang Watthana — Smart Intercool repairs refrigerators and commercial coolers on site, with over 10 years of experience. We reach your home within the hour, quote before we work, and back every repair for up to 3 months.">ช่างวัฒนา — สมาร์ทอินเตอร์คูล ให้บริการซ่อมตู้เย็นและตู้แช่นอกสถานที่ ด้วยประสบการณ์กว่า 10 ปี ถึงบ้านคุณภายใน 1 ชั่วโมง แจ้งราคาก่อนซ่อมทุกครั้ง รับประกันผลงานถึง 3 เดือน</p>
     <div class="hero-ctas">
-      <a href="#contact" class="btn btn-primary" data-lang-th="นัดหมายช่างตรวจเครื่อง" data-lang-en="Schedule a Technician">นัดหมายช่างตรวจเครื่อง</a>
-      <a href="tel:0812345678" class="btn btn-secondary" data-lang-th="โทร 081-234-5678" data-lang-en="Call 081-234-5678">โทร 081-234-5678</a>
+      <a href="tel:0956286980" class="btn btn-primary"><i data-lucide="phone" width="16" height="16"></i><span data-lang-th="โทร 095-628-6980" data-lang-en="Call 095-628-6980">โทร 095-628-6980</span></a>
+      <a href="https://line.me/ti/p/lDq5cWlmaz" target="_blank" rel="noopener" class="btn btn-secondary"><i data-lucide="message-circle" width="16" height="16"></i><span data-lang-th="แชทผ่าน LINE" data-lang-en="Chat on LINE">แชทผ่าน LINE</span></a>
+    </div>
+    <div class="hero-badges">
+      <span class="hero-badge"><i data-lucide="clock" width="16" height="16"></i><span data-lang-th="ถึงบ้านใน <b>1 ชั่วโมง</b>" data-lang-en="On site in <b>1 hour</b>">ถึงบ้านใน <b>1 ชั่วโมง</b></span></span>
+      <span class="hero-badge"><i data-lucide="shield-check" width="16" height="16"></i><span data-lang-th="รับประกัน <b>3 เดือน</b>" data-lang-en="<b>3-month</b> warranty">รับประกัน <b>3 เดือน</b></span></span>
+      <span class="hero-badge"><i data-lucide="search-check" width="16" height="16"></i><span data-lang-th="ตรวจเช็ค <b>ฟรี</b>" data-lang-en="<b>Free</b> inspection">ตรวจเช็ค <b>ฟรี</b></span></span>
     </div>
   </div>
   <div class="hero-right">
     <div class="img-wrap">
-      <img src="https://images.unsplash.com/photo-1753964724380-2c5ae02512a8?w=1000&h=1400&fit=crop" alt="ช่างตรวจเช็คระบบภายใต้แสงไฟสลัว">
+      <img src="assets/img/line_oa_chat_260818_154417.jpg" alt="ช่างวัฒนาเข้าซ่อมตู้เย็นนอกสถานที่ที่บ้านลูกค้า" fetchpriority="high" decoding="async" width="1108" height="1477">
     </div>
     <div class="monolith glow-line"></div>
   </div>
@@ -612,7 +862,7 @@
   <div class="container">
     <span class="eyebrow" data-lang-th="หลักการของเรา" data-lang-en="Our Philosophy">หลักการของเรา</span>
     <p class="quote" data-lang-th="เราไม่ได้ซ่อมเครื่องใช้ไฟฟ้า — เรารักษา<em>ความสงบของบ้านคุณ</em>" data-lang-en="We don't simply repair appliances — we restore <em>the calm of your home</em>.">เราไม่ได้ซ่อมเครื่องใช้ไฟฟ้า — เรารักษา<em>ความสงบของบ้านคุณ</em></p>
-    <p class="philosophy-note" data-lang-th="ทุกการซ่อมของนิตยา บุญแสนรัน เริ่มต้นจากการฟังเสียงของเครื่อง วิเคราะห์ด้วยเครื่องมือเฉพาะทาง และจบด้วยความเงียบที่สมบูรณ์แบบอีกครั้ง" data-lang-en="Every repair by นิตยา บุญแสนรัน begins by listening to the machine, diagnosing with precision instruments, and ends with perfect silence, restored.">ทุกการซ่อมของนิตยา บุญแสนรัน เริ่มต้นจากการฟังเสียงของเครื่อง วิเคราะห์ด้วยเครื่องมือเฉพาะทาง และจบด้วยความเงียบที่สมบูรณ์แบบอีกครั้ง</p>
+    <p class="philosophy-note" data-lang-th="ทุกการซ่อมของช่างวัฒนา เริ่มต้นจากการฟังเสียงของเครื่อง วิเคราะห์ด้วยเครื่องมือเฉพาะทาง และจบด้วยความเงียบที่สมบูรณ์แบบอีกครั้ง" data-lang-en="Every repair by Chang Watthana begins by listening to the machine, diagnosing with precision instruments, and ends with perfect silence, restored.">ทุกการซ่อมของช่างวัฒนา เริ่มต้นจากการฟังเสียงของเครื่อง วิเคราะห์ด้วยเครื่องมือเฉพาะทาง และจบด้วยความเงียบที่สมบูรณ์แบบอีกครั้ง</p>
   </div>
 </section>
 
@@ -620,63 +870,946 @@
   <div class="container">
     <div class="services-head reveal">
       <span class="eyebrow" data-lang-th="บริการของเรา" data-lang-en="Our Services">บริการของเรา</span>
-      <h2 data-lang-th="ดูแลทุกมิติของความเย็น" data-lang-en="Every Dimension of Cooling, Covered">ดูแลทุกมิติของความเย็น</h2>
+      <h2 data-lang-th="ซ่อมตู้เย็น ตู้แช่ ครบวงจร ทุกยี่ห้อ" data-lang-en="Complete Refrigeration Care, Every Brand">ซ่อมตู้เย็น ตู้แช่ ครบวงจร ทุกยี่ห้อ</h2>
     </div>
 
     <div class="acc-item reveal">
-      <button class="acc-head">
+      <button class="acc-head" type="button" aria-expanded="false">
         <span class="acc-num">01</span>
-        <span class="acc-title" data-lang-th="ซ่อมตู้เย็นทุกยี่ห้อ" data-lang-en="Repair for Every Refrigerator Brand">ซ่อมตู้เย็นทุกยี่ห้อ</span>
+        <span class="acc-title" data-lang-th="ตู้เย็นบ้าน ทุกรุ่น ทุกยี่ห้อ" data-lang-en="Household Refrigerators, All Models">ตู้เย็นบ้าน ทุกรุ่น ทุกยี่ห้อ</span>
         <i data-lucide="plus" class="acc-icon"></i>
       </button>
       <div class="acc-panel">
-        <div class="acc-panel-inner" data-lang-th="ตั้งแต่ตู้เย็นในบ้านทั่วไปจนถึงรุ่นบิลท์อินระดับพรีเมียม ช่างของเราวิเคราะห์และซ่อมด้วยอะไหล่มาตรฐานโรงงาน" data-lang-en="From everyday household units to premium built-in models, our technicians diagnose and repair using factory-standard parts.">ตั้งแต่ตู้เย็นในบ้านทั่วไปจนถึงรุ่นบิลท์อินระดับพรีเมียม ช่างของเราวิเคราะห์และซ่อมด้วยอะไหล่มาตรฐานโรงงาน</div>
+        <div class="acc-panel-inner">
+          <span data-lang-th="ซ่อมตู้เย็นประตูเดียว 2 ประตู ระบบโนฟรอส Side by Side และมินิบาร์ ทุกยี่ห้อ ถึงบ้านคุณ พร้อมอะไหล่ในรถทุกคัน" data-lang-en="We repair single-door, two-door No-Frost, Side-by-Side and minibar refrigerators of every brand, on site, with parts carried in every service vehicle.">ซ่อมตู้เย็นประตูเดียว 2 ประตู ระบบโนฟรอส Side by Side และมินิบาร์ ทุกยี่ห้อ ถึงบ้านคุณ พร้อมอะไหล่ในรถทุกคัน</span>
+          <div class="acc-list">
+            <span data-lang-th="ตู้เย็นไม่เย็น / เย็นน้อย" data-lang-en="Not cooling / cooling weakly">ตู้เย็นไม่เย็น / เย็นน้อย</span>
+            <span data-lang-th="น้ำแข็งไม่เกิด" data-lang-en="No ice forming">น้ำแข็งไม่เกิด</span>
+            <span data-lang-th="คอมเพรสเซอร์เสีย" data-lang-en="Failed compressor">คอมเพรสเซอร์เสีย</span>
+            <span data-lang-th="น้ำยาหมด / รั่ว" data-lang-en="Refrigerant empty / leaking">น้ำยาหมด / รั่ว</span>
+          </div>
+        </div>
       </div>
     </div>
 
     <div class="acc-item reveal">
-      <button class="acc-head">
+      <button class="acc-head" type="button" aria-expanded="false">
         <span class="acc-num">02</span>
-        <span class="acc-title" data-lang-th="ระบบทำความเย็นเชิงพาณิชย์" data-lang-en="Commercial Refrigeration Systems">ระบบทำความเย็นเชิงพาณิชย์</span>
+        <span class="acc-title" data-lang-th="ตู้แช่ร้านค้า ร้านอาหาร" data-lang-en="Commercial Coolers for Shops &amp; Restaurants">ตู้แช่ร้านค้า ร้านอาหาร</span>
         <i data-lucide="plus" class="acc-icon"></i>
       </button>
       <div class="acc-panel">
-        <div class="acc-panel-inner" data-lang-th="ดูแลตู้แช่ ห้องเย็น และระบบความเย็นสำหรับร้านอาหารและธุรกิจ ด้วยความแม่นยำระดับอุตสาหกรรม" data-lang-en="We service display coolers, cold rooms, and commercial cooling systems for restaurants and businesses with industrial-grade precision.">ดูแลตู้แช่ ห้องเย็น และระบบความเย็นสำหรับร้านอาหารและธุรกิจ ด้วยความแม่นยำระดับอุตสาหกรรม</div>
+        <div class="acc-panel-inner">
+          <span data-lang-th="ดูแลตู้แช่สินค้า ตู้โชว์เครื่องดื่ม และตู้แช่วัตถุดิบสำหรับร้านค้า ร้านอาหาร และธุรกิจ ด้วยความเข้าใจว่าทุกชั่วโมงที่ตู้หยุดทำงานคือรายได้ที่หายไป" data-lang-en="We service display coolers, beverage showcases and ingredient freezers for shops, restaurants and businesses — because every hour a unit is down is revenue lost.">ดูแลตู้แช่สินค้า ตู้โชว์เครื่องดื่ม และตู้แช่วัตถุดิบสำหรับร้านค้า ร้านอาหาร และธุรกิจ ด้วยความเข้าใจว่าทุกชั่วโมงที่ตู้หยุดทำงานคือรายได้ที่หายไป</span>
+          <div class="acc-list">
+            <span data-lang-th="ตู้แช่แบบมีกระจก" data-lang-en="Glass display coolers">ตู้แช่แบบมีกระจก</span>
+            <span data-lang-th="ตู้แช่แนวนอน" data-lang-en="Chest freezers">ตู้แช่แนวนอน</span>
+            <span data-lang-th="ตู้แช่ 4 ประตู" data-lang-en="Four-door coolers">ตู้แช่ 4 ประตู</span>
+            <span data-lang-th="ตู้โชว์เครื่องดื่ม" data-lang-en="Beverage showcases">ตู้โชว์เครื่องดื่ม</span>
+          </div>
+        </div>
       </div>
     </div>
 
     <div class="acc-item reveal">
-      <button class="acc-head">
+      <button class="acc-head" type="button" aria-expanded="false">
         <span class="acc-num">03</span>
-        <span class="acc-title" data-lang-th="บริการฉุกเฉินภายใน 2 ชั่วโมง" data-lang-en="Emergency Response Within 2 Hours">บริการฉุกเฉินภายใน 2 ชั่วโมง</span>
+        <span class="acc-title" data-lang-th="ตู้แช่พิเศษ เค้ก เบเกอรี่ ไวน์" data-lang-en="Specialty Coolers — Cake, Bakery, Wine">ตู้แช่พิเศษ เค้ก เบเกอรี่ ไวน์</span>
         <i data-lucide="plus" class="acc-icon"></i>
       </button>
       <div class="acc-panel">
-        <div class="acc-panel-inner" data-lang-th="ทีมช่างพร้อมเดินทางถึงบ้านคุณอย่างรวดเร็ว เมื่อความเย็นหยุดทำงานในเวลาที่คุณต้องการมันที่สุด" data-lang-en="Our team arrives swiftly when cooling fails — right when you need it the most.">ทีมช่างพร้อมเดินทางถึงบ้านคุณอย่างรวดเร็ว เมื่อความเย็นหยุดทำงานในเวลาที่คุณต้องการมันที่สุด</div>
+        <div class="acc-panel-inner">
+          <span data-lang-th="งานที่ต้องการความละเอียดเรื่องอุณหภูมิและความชื้น เราปรับตั้งค่าให้เหมาะกับสินค้าของคุณ ทั้งตู้แช่เค้ก ตู้แช่เบเกอรี่ และตู้แช่ไวน์ทุกยี่ห้อ" data-lang-en="Work that demands precise temperature and humidity. We calibrate to suit what you store — cake and bakery cabinets, and wine coolers of every brand.">งานที่ต้องการความละเอียดเรื่องอุณหภูมิและความชื้น เราปรับตั้งค่าให้เหมาะกับสินค้าของคุณ ทั้งตู้แช่เค้ก ตู้แช่เบเกอรี่ และตู้แช่ไวน์ทุกยี่ห้อ</span>
+          <div class="acc-list">
+            <span data-lang-th="ตู้แช่เค้ก / เบเกอรี่" data-lang-en="Cake / bakery cabinets">ตู้แช่เค้ก / เบเกอรี่</span>
+            <span data-lang-th="ตู้แช่ไวน์" data-lang-en="Wine coolers">ตู้แช่ไวน์</span>
+            <span data-lang-th="ปรับอุณหภูมิ" data-lang-en="Temperature calibration">ปรับอุณหภูมิ</span>
+            <span data-lang-th="เปลี่ยนอะไหล่" data-lang-en="Parts replacement">เปลี่ยนอะไหล่</span>
+          </div>
+        </div>
       </div>
     </div>
 
     <div class="acc-item reveal">
-      <button class="acc-head">
+      <button class="acc-head" type="button" aria-expanded="false">
         <span class="acc-num">04</span>
-        <span class="acc-title" data-lang-th="ตรวจเช็คและบำรุงรักษาประจำปี" data-lang-en="Annual Inspection & Maintenance">ตรวจเช็คและบำรุงรักษาประจำปี</span>
+        <span class="acc-title" data-lang-th="ตรวจเช็คและบำรุงรักษา" data-lang-en="Inspection &amp; Maintenance">ตรวจเช็คและบำรุงรักษา</span>
         <i data-lucide="plus" class="acc-icon"></i>
       </button>
       <div class="acc-panel">
-        <div class="acc-panel-inner" data-lang-th="ยืดอายุการใช้งานของตู้เย็นด้วยการตรวจเช็คตามระยะ ลดความเสี่ยงของการเสียกะทันหัน" data-lang-en="Extend the lifespan of your unit with scheduled inspections that reduce the risk of sudden breakdowns.">ยืดอายุการใช้งานของตู้เย็นด้วยการตรวจเช็คตามระยะ ลดความเสี่ยงของการเสียกะทันหัน</div>
+        <div class="acc-panel-inner">
+          <span data-lang-th="ยืดอายุการใช้งานด้วยการตรวจเช็คตามระยะ ทำความสะอาดระบบทำความเย็น และให้คำแนะนำการใช้งานที่ถูกต้อง ลดความเสี่ยงของการเสียกะทันหัน" data-lang-en="Extend the life of your unit with scheduled inspections, a full cleaning of the cooling system, and guidance on correct use — reducing the risk of sudden failure.">ยืดอายุการใช้งานด้วยการตรวจเช็คตามระยะ ทำความสะอาดระบบทำความเย็น และให้คำแนะนำการใช้งานที่ถูกต้อง ลดความเสี่ยงของการเสียกะทันหัน</span>
+          <div class="acc-list">
+            <span data-lang-th="ตรวจเช็คความเย็น" data-lang-en="Cooling performance check">ตรวจเช็คความเย็น</span>
+            <span data-lang-th="ทำความสะอาดระบบ" data-lang-en="System cleaning">ทำความสะอาดระบบ</span>
+            <span data-lang-th="เติมน้ำยา" data-lang-en="Refrigerant top-up">เติมน้ำยา</span>
+            <span data-lang-th="ให้คำแนะนำการใช้งาน" data-lang-en="Usage guidance">ให้คำแนะนำการใช้งาน</span>
+          </div>
+        </div>
       </div>
     </div>
 
     <div class="acc-item reveal">
-      <button class="acc-head">
+      <button class="acc-head" type="button" aria-expanded="false">
         <span class="acc-num">05</span>
-        <span class="acc-title" data-lang-th="ติดตั้งและเคลื่อนย้ายตู้เย็น" data-lang-en="Installation & Relocation">ติดตั้งและเคลื่อนย้ายตู้เย็น</span>
+        <span class="acc-title" data-lang-th="บริการฉุกเฉิน 24 ชั่วโมง" data-lang-en="24-Hour Emergency Service">บริการฉุกเฉิน 24 ชั่วโมง</span>
         <i data-lucide="plus" class="acc-icon"></i>
       </button>
       <div class="acc-panel">
-        <div class="acc-panel-inner" data-lang-th="ติดตั้งตู้เย็นใหม่หรือเคลื่อนย้ายอย่างปลอดภัย พร้อมตรวจสอบระบบให้พร้อมใช้งานทันที" data-lang-en="Safe installation and relocation of your unit, with a full system check to ensure it's ready to run.">ติดตั้งตู้เย็นใหม่หรือเคลื่อนย้ายอย่างปลอดภัย พร้อมตรวจสอบระบบให้พร้อมใช้งานทันที</div>
+        <div class="acc-panel-inner">
+          <span data-lang-th="เปิดรับสายทุกวันตลอด 24 ชั่วโมง ไม่มีวันหยุด ช่างพร้อมเดินทางถึงบ้านหรือร้านของคุณภายใน 1 ชั่วโมงในพื้นที่กรุงเทพฯ และปริมณฑล" data-lang-en="We answer around the clock, every day of the year. A technician can reach your home or shop within one hour across Bangkok and the surrounding provinces.">เปิดรับสายทุกวันตลอด 24 ชั่วโมง ไม่มีวันหยุด ช่างพร้อมเดินทางถึงบ้านหรือร้านของคุณภายใน 1 ชั่วโมงในพื้นที่กรุงเทพฯ และปริมณฑล</span>
+          <div class="acc-list">
+            <span data-lang-th="รับสาย 24 ชม." data-lang-en="24/7 phone line">รับสาย 24 ชม.</span>
+            <span data-lang-th="ถึงบ้านใน 1 ชั่วโมง" data-lang-en="On site within 1 hour">ถึงบ้านใน 1 ชั่วโมง</span>
+            <span data-lang-th="ไม่มีวันหยุด" data-lang-en="Open every day">ไม่มีวันหยุด</span>
+            <span data-lang-th="แจ้งราคาก่อนซ่อม" data-lang-en="Quote before repair">แจ้งราคาก่อนซ่อม</span>
+          </div>
+        </div>
       </div>
     </div>
+  </div>
+</section>
+
+
+<section class="pricing" id="pricing">
+  <div class="container">
+    <div class="pricing-head reveal">
+      <span class="eyebrow" data-lang-th="อัตราค่าบริการ" data-lang-en="Service Rates">อัตราค่าบริการ</span>
+      <h2 data-lang-th="ค่าบริการซ่อมตู้เย็น ตู้แช่" data-lang-en="Refrigerator &amp; Cooler Repair Rates">ค่าบริการซ่อมตู้เย็น ตู้แช่</h2>
+      <p class="pricing-note" data-lang-th="ค่าบริการซ่อมตู้เย็นรวมทั้งหมด ประกอบด้วยค่าอะไหล่ ค่าแรง ค่าบริการนอกพื้นที่ และค่าเดินทาง แจ้งราคาชัดเจนก่อนเริ่มงานทุกครั้ง ไม่มีค่าใช้จ่ายแอบแฝง" data-lang-en="Every rate below is all-inclusive — parts, labour, out-of-area service and travel. We quote clearly before any work begins, with no hidden charges.">ค่าบริการซ่อมตู้เย็นรวมทั้งหมด ประกอบด้วยค่าอะไหล่ ค่าแรง ค่าบริการนอกพื้นที่ และค่าเดินทาง แจ้งราคาชัดเจนก่อนเริ่มงานทุกครั้ง ไม่มีค่าใช้จ่ายแอบแฝง</p>
+      <div class="pricing-legend">
+        <span class="legend-chip"><i data-lucide="wrench" width="14" height="14"></i><span data-lang-th="รวมค่าอะไหล่และค่าแรง" data-lang-en="Parts &amp; labour included">รวมค่าอะไหล่และค่าแรง</span></span>
+        <span class="legend-chip"><i data-lucide="shield-check" width="14" height="14"></i><span data-lang-th="รับประกันงานซ่อมถึง 3 เดือน" data-lang-en="Warranty up to 3 months">รับประกันงานซ่อมถึง 3 เดือน</span></span>
+        <span class="legend-chip"><i data-lucide="search-check" width="14" height="14"></i><span data-lang-th="ตรวจเช็คหน้างานฟรี" data-lang-en="Free on-site inspection">ตรวจเช็คหน้างานฟรี</span></span>
+      </div>
+    </div>
+
+    <div class="pacc">
+      <div class="pacc-item reveal open">
+        <button class="pacc-head" aria-expanded="true">
+          <span class="pacc-thumb"><img src="assets/img/pricing/thumb/fridge_01.jpg" alt="ซ่อมตู้เย็นประตูเดียว มินิบาร์" loading="lazy" decoding="async" width="200" height="200"></span>
+          <span class="pacc-num">01</span>
+          <span class="pacc-title" data-lang-th="ตู้เย็นประตูเดียว มินิบาร์" data-lang-en="Single-Door &amp; Minibar Refrigerators">ตู้เย็นประตูเดียว มินิบาร์</span>
+          <span class="pacc-from">
+            <small data-lang-th="เริ่มต้น" data-lang-en="from">เริ่มต้น</small>
+            <b>2,000</b>
+            <small data-lang-th="บาท" data-lang-en="THB">บาท</small>
+          </span>
+          <i data-lucide="plus" class="pacc-icon" width="20" height="20"></i>
+        </button>
+        <div class="pacc-panel">
+          <div>
+            <div class="pacc-body">
+              <div class="pacc-media">
+                <img src="assets/img/pricing/fridge_01.jpg" alt="ซ่อมตู้เย็นประตูเดียว มินิบาร์" loading="lazy" decoding="async" width="800" height="800">
+              </div>
+              <div class="pacc-table-wrap">
+                <table class="ptable">
+                  <thead>
+                    <tr>
+                      <th data-lang-th="รายการซ่อม" data-lang-en="Repair item">รายการซ่อม</th>
+                      <th data-lang-th="ค่าบริการ" data-lang-en="Price">ค่าบริการ</th>
+                      <th data-lang-th="ระยะเวลา" data-lang-en="Time">ระยะเวลา</th>
+                      <th data-lang-th="รับประกัน" data-lang-en="Warranty">รับประกัน</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><span data-lang-th="ระบบน้ำยารั่ว/ตัน" data-lang-en="Refrigerant leak / blockage">ระบบน้ำยารั่ว/ตัน</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="2,000 บาท" data-lang-en="฿2,000">2,000 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="60 นาที" data-lang-en="60 min">60 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="3 เดือน" data-lang-en="3 months">3 เดือน</td>
+                    </tr>
+                    <tr>
+                      <td><span data-lang-th="ช่องฟรีซรั่ว เกิดจากของมีคม" data-lang-en="Punctured freezer compartment (sharp object)">ช่องฟรีซรั่ว เกิดจากของมีคม</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="2,500 บาท" data-lang-en="฿2,500">2,500 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="60 นาที" data-lang-en="60 min">60 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="3 เดือน" data-lang-en="3 months">3 เดือน</td>
+                    </tr>
+                    <tr>
+                      <td><span data-lang-th="เทอร์โมสตัส" data-lang-en="Thermostat">เทอร์โมสตัส</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="2,000 บาท" data-lang-en="฿2,000">2,000 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="60 นาที" data-lang-en="60 min">60 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="3 เดือน" data-lang-en="3 months">3 เดือน</td>
+                    </tr>
+                    <tr>
+                      <td><span data-lang-th="เปลี่ยนคอมเพรสเซอร์" data-lang-en="Compressor replacement">เปลี่ยนคอมเพรสเซอร์</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="4,000 บาท" data-lang-en="฿4,000">4,000 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="90 นาที" data-lang-en="90 min">90 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="1 เดือน" data-lang-en="1 month">1 เดือน</td>
+                    </tr>
+                    <tr>
+                      <td><span data-lang-th="ชุดสตาร์ทคอมเพรสเซอร์" data-lang-en="Compressor start-relay kit">ชุดสตาร์ทคอมเพรสเซอร์</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="2,000 บาท" data-lang-en="฿2,000">2,000 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="30 นาที" data-lang-en="30 min">30 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="3 เดือน" data-lang-en="3 months">3 เดือน</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pacc-item reveal">
+        <button class="pacc-head" aria-expanded="false">
+          <span class="pacc-thumb"><img src="assets/img/pricing/thumb/fridge_02.jpg" alt="ซ่อมตู้เย็นประตูเดียว" loading="lazy" decoding="async" width="200" height="200"></span>
+          <span class="pacc-num">02</span>
+          <span class="pacc-title" data-lang-th="ตู้เย็นประตูเดียว" data-lang-en="Single-Door Refrigerators">ตู้เย็นประตูเดียว</span>
+          <span class="pacc-from">
+            <small data-lang-th="เริ่มต้น" data-lang-en="from">เริ่มต้น</small>
+            <b>2,000</b>
+            <small data-lang-th="บาท" data-lang-en="THB">บาท</small>
+          </span>
+          <i data-lucide="plus" class="pacc-icon" width="20" height="20"></i>
+        </button>
+        <div class="pacc-panel">
+          <div>
+            <div class="pacc-body">
+              <div class="pacc-media">
+                <img src="assets/img/pricing/fridge_02.jpg" alt="ซ่อมตู้เย็นประตูเดียว" loading="lazy" decoding="async" width="800" height="800">
+              </div>
+              <div class="pacc-table-wrap">
+                <table class="ptable">
+                  <thead>
+                    <tr>
+                      <th data-lang-th="รายการซ่อม" data-lang-en="Repair item">รายการซ่อม</th>
+                      <th data-lang-th="ค่าบริการ" data-lang-en="Price">ค่าบริการ</th>
+                      <th data-lang-th="ระยะเวลา" data-lang-en="Time">ระยะเวลา</th>
+                      <th data-lang-th="รับประกัน" data-lang-en="Warranty">รับประกัน</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><span data-lang-th="ระบบน้ำยารั่ว/ตัน" data-lang-en="Refrigerant leak / blockage">ระบบน้ำยารั่ว/ตัน</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="2,500 บาท" data-lang-en="฿2,500">2,500 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="60 นาที" data-lang-en="60 min">60 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="3 เดือน" data-lang-en="3 months">3 เดือน</td>
+                    </tr>
+                    <tr>
+                      <td><span data-lang-th="ช่องฟรีซรั่ว เกิดจากของมีคม" data-lang-en="Punctured freezer compartment (sharp object)">ช่องฟรีซรั่ว เกิดจากของมีคม</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="2,500 บาท" data-lang-en="฿2,500">2,500 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="60 นาที" data-lang-en="60 min">60 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="3 เดือน" data-lang-en="3 months">3 เดือน</td>
+                    </tr>
+                    <tr>
+                      <td><span data-lang-th="เทอร์โมสตัส" data-lang-en="Thermostat">เทอร์โมสตัส</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="2,000 บาท" data-lang-en="฿2,000">2,000 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="60 นาที" data-lang-en="60 min">60 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="3 เดือน" data-lang-en="3 months">3 เดือน</td>
+                    </tr>
+                    <tr>
+                      <td><span data-lang-th="เปลี่ยนคอมเพรสเซอร์" data-lang-en="Compressor replacement">เปลี่ยนคอมเพรสเซอร์</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="4,500 บาท" data-lang-en="฿4,500">4,500 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="90 นาที" data-lang-en="90 min">90 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="1 เดือน" data-lang-en="1 month">1 เดือน</td>
+                    </tr>
+                    <tr>
+                      <td><span data-lang-th="ชุดสตาร์ทคอมเพรสเซอร์" data-lang-en="Compressor start-relay kit">ชุดสตาร์ทคอมเพรสเซอร์</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="2,000 บาท" data-lang-en="฿2,000">2,000 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="30 นาที" data-lang-en="30 min">30 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="3 เดือน" data-lang-en="3 months">3 เดือน</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pacc-item reveal">
+        <button class="pacc-head" aria-expanded="false">
+          <span class="pacc-thumb"><img src="assets/img/pricing/thumb/fridge_03.jpg" alt="ซ่อมตู้เย็น 2 ประตู ระบบโนฟรอส (NoFrost)" loading="lazy" decoding="async" width="200" height="200"></span>
+          <span class="pacc-num">03</span>
+          <span class="pacc-title" data-lang-th="ตู้เย็น 2 ประตู ระบบโนฟรอส (NoFrost)" data-lang-en="Two-Door No-Frost Refrigerators">ตู้เย็น 2 ประตู ระบบโนฟรอส (NoFrost)</span>
+          <span class="pacc-from">
+            <small data-lang-th="เริ่มต้น" data-lang-en="from">เริ่มต้น</small>
+            <b>2,000</b>
+            <small data-lang-th="บาท" data-lang-en="THB">บาท</small>
+          </span>
+          <i data-lucide="plus" class="pacc-icon" width="20" height="20"></i>
+        </button>
+        <div class="pacc-panel">
+          <div>
+            <div class="pacc-body">
+              <div class="pacc-media">
+                <img src="assets/img/pricing/fridge_03.jpg" alt="ซ่อมตู้เย็น 2 ประตู ระบบโนฟรอส (NoFrost)" loading="lazy" decoding="async" width="800" height="800">
+              </div>
+              <div class="pacc-table-wrap">
+                <table class="ptable">
+                  <thead>
+                    <tr>
+                      <th data-lang-th="รายการซ่อม" data-lang-en="Repair item">รายการซ่อม</th>
+                      <th data-lang-th="ค่าบริการ" data-lang-en="Price">ค่าบริการ</th>
+                      <th data-lang-th="ระยะเวลา" data-lang-en="Time">ระยะเวลา</th>
+                      <th data-lang-th="รับประกัน" data-lang-en="Warranty">รับประกัน</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><span data-lang-th="ระบบน้ำยารั่ว/ตัน" data-lang-en="Refrigerant leak / blockage">ระบบน้ำยารั่ว/ตัน</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="3,000 บาท" data-lang-en="฿3,000">3,000 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="60 นาที" data-lang-en="60 min">60 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="3 เดือน" data-lang-en="3 months">3 เดือน</td>
+                    </tr>
+                    <tr>
+                      <td><span data-lang-th="ระบบละลายน้ำแข็งอัตโนมัติ" data-lang-en="Automatic defrost system">ระบบละลายน้ำแข็งอัตโนมัติ</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="2,500 บาท" data-lang-en="฿2,500">2,500 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="60 นาที" data-lang-en="60 min">60 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="3 เดือน" data-lang-en="3 months">3 เดือน</td>
+                    </tr>
+                    <tr>
+                      <td><span data-lang-th="เทอร์โมสตัส" data-lang-en="Thermostat">เทอร์โมสตัส</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="2,000 บาท" data-lang-en="฿2,000">2,000 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="60 นาที" data-lang-en="60 min">60 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="3 เดือน" data-lang-en="3 months">3 เดือน</td>
+                    </tr>
+                    <tr>
+                      <td><span data-lang-th="เปลี่ยนคอมเพรสเซอร์ 1/5HP" data-lang-en="Compressor replacement (1/5 HP)">เปลี่ยนคอมเพรสเซอร์ 1/5HP</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="5,500-7,500 บาท" data-lang-en="฿5,500-7,500">5,500-7,500 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="90 นาที" data-lang-en="90 min">90 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="1 เดือน" data-lang-en="1 month">1 เดือน</td>
+                    </tr>
+                    <tr>
+                      <td><span data-lang-th="ชุดสตาร์ทคอมเพรสเซอร์" data-lang-en="Compressor start-relay kit">ชุดสตาร์ทคอมเพรสเซอร์</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="2,500 บาท" data-lang-en="฿2,500">2,500 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="30 นาที" data-lang-en="30 min">30 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="3 เดือน" data-lang-en="3 months">3 เดือน</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pacc-item reveal">
+        <button class="pacc-head" aria-expanded="false">
+          <span class="pacc-thumb"><img src="assets/img/pricing/thumb/fridge_04.jpg" alt="ซ่อมตู้เย็น Side by Side" loading="lazy" decoding="async" width="200" height="200"></span>
+          <span class="pacc-num">04</span>
+          <span class="pacc-title" data-lang-th="ตู้เย็น Side by Side" data-lang-en="Side-by-Side Refrigerators">ตู้เย็น Side by Side</span>
+          <span class="pacc-from">
+            <small data-lang-th="เริ่มต้น" data-lang-en="from">เริ่มต้น</small>
+            <b>2,500</b>
+            <small data-lang-th="บาท" data-lang-en="THB">บาท</small>
+          </span>
+          <i data-lucide="plus" class="pacc-icon" width="20" height="20"></i>
+        </button>
+        <div class="pacc-panel">
+          <div>
+            <div class="pacc-body">
+              <div class="pacc-media">
+                <img src="assets/img/pricing/fridge_04.jpg" alt="ซ่อมตู้เย็น Side by Side" loading="lazy" decoding="async" width="800" height="800">
+              </div>
+              <div class="pacc-table-wrap">
+                <table class="ptable">
+                  <thead>
+                    <tr>
+                      <th data-lang-th="รายการซ่อม" data-lang-en="Repair item">รายการซ่อม</th>
+                      <th data-lang-th="ค่าบริการ" data-lang-en="Price">ค่าบริการ</th>
+                      <th data-lang-th="ระยะเวลา" data-lang-en="Time">ระยะเวลา</th>
+                      <th data-lang-th="รับประกัน" data-lang-en="Warranty">รับประกัน</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><span data-lang-th="ระบบน้ำยารั่ว/ตัน" data-lang-en="Refrigerant leak / blockage">ระบบน้ำยารั่ว/ตัน</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="4,000-4,500 บาท" data-lang-en="฿4,000-4,500">4,000-4,500 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="60 นาที" data-lang-en="60 min">60 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="3 เดือน" data-lang-en="3 months">3 เดือน</td>
+                    </tr>
+                    <tr>
+                      <td><span data-lang-th="ระบบละลายน้ำแข็งอัตโนมัติ" data-lang-en="Automatic defrost system">ระบบละลายน้ำแข็งอัตโนมัติ</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="2,500-3,500 บาท" data-lang-en="฿2,500-3,500">2,500-3,500 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="60 นาที" data-lang-en="60 min">60 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="3 เดือน" data-lang-en="3 months">3 เดือน</td>
+                    </tr>
+                    <tr>
+                      <td><span data-lang-th="เทอร์โมสตัส" data-lang-en="Thermostat">เทอร์โมสตัส</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="2,500 บาท" data-lang-en="฿2,500">2,500 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="60 นาที" data-lang-en="60 min">60 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="3 เดือน" data-lang-en="3 months">3 เดือน</td>
+                    </tr>
+                    <tr>
+                      <td><span data-lang-th="เปลี่ยนคอมเพรสเซอร์" data-lang-en="Compressor replacement">เปลี่ยนคอมเพรสเซอร์</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="7,500-8,500 บาท" data-lang-en="฿7,500-8,500">7,500-8,500 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="90 นาที" data-lang-en="90 min">90 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="1 เดือน" data-lang-en="1 month">1 เดือน</td>
+                    </tr>
+                    <tr>
+                      <td><span data-lang-th="มอเตอร์พัดลม [AC 200V]" data-lang-en="Fan motor (AC 200V)">มอเตอร์พัดลม [AC 200V]</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="2,500-3,500 บาท" data-lang-en="฿2,500-3,500">2,500-3,500 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="60 นาที" data-lang-en="60 min">60 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="3 เดือน" data-lang-en="3 months">3 เดือน</td>
+                    </tr>
+                    <tr>
+                      <td><span data-lang-th="มอเตอร์พัดลม [DC 12-13V]" data-lang-en="Fan motor (DC 12–13V)">มอเตอร์พัดลม [DC 12-13V]</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="2,500-3,500 บาท" data-lang-en="฿2,500-3,500">2,500-3,500 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="60 นาที" data-lang-en="60 min">60 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="3 เดือน" data-lang-en="3 months">3 เดือน</td>
+                    </tr>
+                    <tr>
+                      <td><span data-lang-th="ชุดสตาร์ทคอมเพรสเซอร์" data-lang-en="Compressor start-relay kit">ชุดสตาร์ทคอมเพรสเซอร์</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="2,500 บาท" data-lang-en="฿2,500">2,500 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="30 นาที" data-lang-en="30 min">30 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="3 เดือน" data-lang-en="3 months">3 เดือน</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pacc-item reveal">
+        <button class="pacc-head" aria-expanded="false">
+          <span class="pacc-thumb"><img src="assets/img/pricing/thumb/fridge_05.jpg" alt="ซ่อมตู้แช่สินค้า แบบโชว์มีกระจก ประตูเดียว ทุกรุ่น" loading="lazy" decoding="async" width="200" height="200"></span>
+          <span class="pacc-num">05</span>
+          <span class="pacc-title" data-lang-th="ตู้แช่สินค้า แบบโชว์มีกระจก ประตูเดียว ทุกรุ่น" data-lang-en="Single-Door Glass Display Coolers, All Models">ตู้แช่สินค้า แบบโชว์มีกระจก ประตูเดียว ทุกรุ่น</span>
+          <span class="pacc-from">
+            <small data-lang-th="เริ่มต้น" data-lang-en="from">เริ่มต้น</small>
+            <b>2,500</b>
+            <small data-lang-th="บาท" data-lang-en="THB">บาท</small>
+          </span>
+          <i data-lucide="plus" class="pacc-icon" width="20" height="20"></i>
+        </button>
+        <div class="pacc-panel">
+          <div>
+            <div class="pacc-body">
+              <div class="pacc-media">
+                <img src="assets/img/pricing/fridge_05.jpg" alt="ซ่อมตู้แช่สินค้า แบบโชว์มีกระจก ประตูเดียว ทุกรุ่น" loading="lazy" decoding="async" width="800" height="800">
+              </div>
+              <div class="pacc-table-wrap">
+                <table class="ptable">
+                  <thead>
+                    <tr>
+                      <th data-lang-th="รายการซ่อม" data-lang-en="Repair item">รายการซ่อม</th>
+                      <th data-lang-th="ค่าบริการ" data-lang-en="Price">ค่าบริการ</th>
+                      <th data-lang-th="ระยะเวลา" data-lang-en="Time">ระยะเวลา</th>
+                      <th data-lang-th="รับประกัน" data-lang-en="Warranty">รับประกัน</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><span data-lang-th="ระบบน้ำยารั่ว/ตัน R-134a" data-lang-en="Refrigerant leak / blockage (R-134a)">ระบบน้ำยารั่ว/ตัน R-134a</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="3,000 บาท" data-lang-en="฿3,000">3,000 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="90 นาที" data-lang-en="90 min">90 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="3 เดือน" data-lang-en="3 months">3 เดือน</td>
+                    </tr>
+                    <tr>
+                      <td><span data-lang-th="เทอร์โมสตัส" data-lang-en="Thermostat">เทอร์โมสตัส</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="2,500 บาท" data-lang-en="฿2,500">2,500 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="60 นาที" data-lang-en="60 min">60 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="3 เดือน" data-lang-en="3 months">3 เดือน</td>
+                    </tr>
+                    <tr>
+                      <td><span data-lang-th="มอเตอร์พัดลม" data-lang-en="Fan motor">มอเตอร์พัดลม</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="2,500 บาท" data-lang-en="฿2,500">2,500 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="60 นาที" data-lang-en="60 min">60 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="3 เดือน" data-lang-en="3 months">3 เดือน</td>
+                    </tr>
+                    <tr>
+                      <td><span data-lang-th="เปลี่ยนคอมเพรสเซอร์" data-lang-en="Compressor replacement">เปลี่ยนคอมเพรสเซอร์</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="5,500-7,500 บาท" data-lang-en="฿5,500-7,500">5,500-7,500 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="90 นาที" data-lang-en="90 min">90 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="1 เดือน" data-lang-en="1 month">1 เดือน</td>
+                    </tr>
+                    <tr>
+                      <td><span data-lang-th="ชุดสตาร์ทคอมเพรสเซอร์" data-lang-en="Compressor start-relay kit">ชุดสตาร์ทคอมเพรสเซอร์</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="2,500 บาท" data-lang-en="฿2,500">2,500 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="30 นาที" data-lang-en="30 min">30 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="3 เดือน" data-lang-en="3 months">3 เดือน</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pacc-item reveal">
+        <button class="pacc-head" aria-expanded="false">
+          <span class="pacc-thumb"><img src="assets/img/pricing/thumb/fridge_06.jpg" alt="ซ่อมตู้แช่สินค้า แบบโชว์มีกระจก 2 ประตู ทุกรุ่น" loading="lazy" decoding="async" width="200" height="200"></span>
+          <span class="pacc-num">06</span>
+          <span class="pacc-title" data-lang-th="ตู้แช่สินค้า แบบโชว์มีกระจก 2 ประตู ทุกรุ่น" data-lang-en="Two-Door Glass Display Coolers, All Models">ตู้แช่สินค้า แบบโชว์มีกระจก 2 ประตู ทุกรุ่น</span>
+          <span class="pacc-from">
+            <small data-lang-th="เริ่มต้น" data-lang-en="from">เริ่มต้น</small>
+            <b>2,500</b>
+            <small data-lang-th="บาท" data-lang-en="THB">บาท</small>
+          </span>
+          <i data-lucide="plus" class="pacc-icon" width="20" height="20"></i>
+        </button>
+        <div class="pacc-panel">
+          <div>
+            <div class="pacc-body">
+              <div class="pacc-media">
+                <img src="assets/img/pricing/fridge_06.jpg" alt="ซ่อมตู้แช่สินค้า แบบโชว์มีกระจก 2 ประตู ทุกรุ่น" loading="lazy" decoding="async" width="800" height="800">
+              </div>
+              <div class="pacc-table-wrap">
+                <table class="ptable">
+                  <thead>
+                    <tr>
+                      <th data-lang-th="รายการซ่อม" data-lang-en="Repair item">รายการซ่อม</th>
+                      <th data-lang-th="ค่าบริการ" data-lang-en="Price">ค่าบริการ</th>
+                      <th data-lang-th="ระยะเวลา" data-lang-en="Time">ระยะเวลา</th>
+                      <th data-lang-th="รับประกัน" data-lang-en="Warranty">รับประกัน</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><span data-lang-th="ระบบน้ำยารั่ว/ตัน R-134a" data-lang-en="Refrigerant leak / blockage (R-134a)">ระบบน้ำยารั่ว/ตัน R-134a</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="4,500-5,000 บาท" data-lang-en="฿4,500-5,000">4,500-5,000 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="90 นาที" data-lang-en="90 min">90 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="3 เดือน" data-lang-en="3 months">3 เดือน</td>
+                    </tr>
+                    <tr>
+                      <td><span data-lang-th="ระบบน้ำยารั่ว/ตัน R-22" data-lang-en="Refrigerant leak / blockage (R-22)">ระบบน้ำยารั่ว/ตัน R-22</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="4,000-5,000 บาท" data-lang-en="฿4,000-5,000">4,000-5,000 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="90 นาที" data-lang-en="90 min">90 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="3 เดือน" data-lang-en="3 months">3 เดือน</td>
+                    </tr>
+                    <tr>
+                      <td><span data-lang-th="เทอร์โมสตัส" data-lang-en="Thermostat">เทอร์โมสตัส</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="2,500 บาท" data-lang-en="฿2,500">2,500 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="60 นาที" data-lang-en="60 min">60 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="3 เดือน" data-lang-en="3 months">3 เดือน</td>
+                    </tr>
+                    <tr>
+                      <td><span data-lang-th="เทอร์โมดิจิตอล คอนโทรล" data-lang-en="Digital thermostat controller">เทอร์โมดิจิตอล คอนโทรล</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="3,500 บาท" data-lang-en="฿3,500">3,500 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="60 นาที" data-lang-en="60 min">60 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="3 เดือน" data-lang-en="3 months">3 เดือน</td>
+                    </tr>
+                    <tr>
+                      <td><span data-lang-th="มอเตอร์พัดลม" data-lang-en="Fan motor">มอเตอร์พัดลม</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="2,500 บาท" data-lang-en="฿2,500">2,500 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="60 นาที" data-lang-en="60 min">60 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="3 เดือน" data-lang-en="3 months">3 เดือน</td>
+                    </tr>
+                    <tr>
+                      <td><span data-lang-th="เปลี่ยนคอมเพรสเซอร์" data-lang-en="Compressor replacement">เปลี่ยนคอมเพรสเซอร์</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="9,500-11,000 บาท" data-lang-en="฿9,500-11,000">9,500-11,000 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="90 นาที" data-lang-en="90 min">90 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="1 เดือน" data-lang-en="1 month">1 เดือน</td>
+                    </tr>
+                    <tr>
+                      <td><span data-lang-th="ชุดสตาร์ทคอมเพรสเซอร์" data-lang-en="Compressor start-relay kit">ชุดสตาร์ทคอมเพรสเซอร์</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="2,500 บาท" data-lang-en="฿2,500">2,500 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="60 นาที" data-lang-en="60 min">60 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="3 เดือน" data-lang-en="3 months">3 เดือน</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pacc-item reveal">
+        <button class="pacc-head" aria-expanded="false">
+          <span class="pacc-thumb"><img src="assets/img/pricing/thumb/fridge_07.jpg" alt="ซ่อมตู้แช่วัตถุดิบ แนวนอน ทุกรุ่น ทุกยี่ห้อ" loading="lazy" decoding="async" width="200" height="200"></span>
+          <span class="pacc-num">07</span>
+          <span class="pacc-title" data-lang-th="ตู้แช่วัตถุดิบ แนวนอน ทุกรุ่น ทุกยี่ห้อ" data-lang-en="Chest Freezers, All Models &amp; Brands">ตู้แช่วัตถุดิบ แนวนอน ทุกรุ่น ทุกยี่ห้อ</span>
+          <span class="pacc-from">
+            <small data-lang-th="เริ่มต้น" data-lang-en="from">เริ่มต้น</small>
+            <b>2,500</b>
+            <small data-lang-th="บาท" data-lang-en="THB">บาท</small>
+          </span>
+          <i data-lucide="plus" class="pacc-icon" width="20" height="20"></i>
+        </button>
+        <div class="pacc-panel">
+          <div>
+            <div class="pacc-body">
+              <div class="pacc-media">
+                <img src="assets/img/pricing/fridge_07.jpg" alt="ซ่อมตู้แช่วัตถุดิบ แนวนอน ทุกรุ่น ทุกยี่ห้อ" loading="lazy" decoding="async" width="800" height="800">
+              </div>
+              <div class="pacc-table-wrap">
+                <table class="ptable">
+                  <thead>
+                    <tr>
+                      <th data-lang-th="รายการซ่อม" data-lang-en="Repair item">รายการซ่อม</th>
+                      <th data-lang-th="ค่าบริการ" data-lang-en="Price">ค่าบริการ</th>
+                      <th data-lang-th="ระยะเวลา" data-lang-en="Time">ระยะเวลา</th>
+                      <th data-lang-th="รับประกัน" data-lang-en="Warranty">รับประกัน</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><span data-lang-th="ระบบน้ำยารั่ว/ตัน R-134a" data-lang-en="Refrigerant leak / blockage (R-134a)">ระบบน้ำยารั่ว/ตัน R-134a</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="3,000-3,500 บาท" data-lang-en="฿3,000-3,500">3,000-3,500 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="90 นาที" data-lang-en="90 min">90 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="3 เดือน" data-lang-en="3 months">3 เดือน</td>
+                    </tr>
+                    <tr>
+                      <td><span data-lang-th="ระบบน้ำยารั่ว/ตัน R-22" data-lang-en="Refrigerant leak / blockage (R-22)">ระบบน้ำยารั่ว/ตัน R-22</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="3,000-3,500 บาท" data-lang-en="฿3,000-3,500">3,000-3,500 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="60 นาที" data-lang-en="60 min">60 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="3 เดือน" data-lang-en="3 months">3 เดือน</td>
+                    </tr>
+                    <tr>
+                      <td><span data-lang-th="ระบบน้ำยารั่ว/ตัน R-404a" data-lang-en="Refrigerant leak / blockage (R-404a)">ระบบน้ำยารั่ว/ตัน R-404a</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="3,000-5,000 บาท" data-lang-en="฿3,000-5,000">3,000-5,000 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="60 นาที" data-lang-en="60 min">60 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="3 เดือน" data-lang-en="3 months">3 เดือน</td>
+                    </tr>
+                    <tr>
+                      <td><span data-lang-th="เทอร์โมสตัส" data-lang-en="Thermostat">เทอร์โมสตัส</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="2,500 บาท" data-lang-en="฿2,500">2,500 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="60 นาที" data-lang-en="60 min">60 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="3 เดือน" data-lang-en="3 months">3 เดือน</td>
+                    </tr>
+                    <tr>
+                      <td><span data-lang-th="เทอร์โมดิจิตอล คอนโทรล" data-lang-en="Digital thermostat controller">เทอร์โมดิจิตอล คอนโทรล</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="3,500 บาท" data-lang-en="฿3,500">3,500 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="60 นาที" data-lang-en="60 min">60 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="3 เดือน" data-lang-en="3 months">3 เดือน</td>
+                    </tr>
+                    <tr>
+                      <td><span data-lang-th="มอเตอร์พัดลม" data-lang-en="Fan motor">มอเตอร์พัดลม</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="2,500 บาท" data-lang-en="฿2,500">2,500 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="60 นาที" data-lang-en="60 min">60 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="3 เดือน" data-lang-en="3 months">3 เดือน</td>
+                    </tr>
+                    <tr>
+                      <td><span data-lang-th="เปลี่ยนคอมเพรสเซอร์" data-lang-en="Compressor replacement">เปลี่ยนคอมเพรสเซอร์</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="5,500-7,500 บาท" data-lang-en="฿5,500-7,500">5,500-7,500 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="90 นาที" data-lang-en="90 min">90 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="1 เดือน" data-lang-en="1 month">1 เดือน</td>
+                    </tr>
+                    <tr>
+                      <td><span data-lang-th="ชุดสตาร์ทคอมเพรสเซอร์" data-lang-en="Compressor start-relay kit">ชุดสตาร์ทคอมเพรสเซอร์</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="2,500 บาท" data-lang-en="฿2,500">2,500 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="30 นาที" data-lang-en="30 min">30 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="3 เดือน" data-lang-en="3 months">3 เดือน</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pacc-item reveal">
+        <button class="pacc-head" aria-expanded="false">
+          <span class="pacc-thumb"><img src="assets/img/pricing/thumb/fridge_08.jpg" alt="ซ่อมตู้แช่สินค้า/วัตถุดิบ 4 ประตูขึ้นไป ทรงสูง" loading="lazy" decoding="async" width="200" height="200"></span>
+          <span class="pacc-num">08</span>
+          <span class="pacc-title" data-lang-th="ตู้แช่สินค้า/วัตถุดิบ 4 ประตูขึ้นไป ทรงสูง" data-lang-en="Upright Coolers &amp; Freezers, 4 Doors and Up">ตู้แช่สินค้า/วัตถุดิบ 4 ประตูขึ้นไป ทรงสูง</span>
+          <span class="pacc-from">
+            <small data-lang-th="เริ่มต้น" data-lang-en="from">เริ่มต้น</small>
+            <b>2,500</b>
+            <small data-lang-th="บาท" data-lang-en="THB">บาท</small>
+          </span>
+          <i data-lucide="plus" class="pacc-icon" width="20" height="20"></i>
+        </button>
+        <div class="pacc-panel">
+          <div>
+            <div class="pacc-body">
+              <div class="pacc-media">
+                <img src="assets/img/pricing/fridge_08.jpg" alt="ซ่อมตู้แช่สินค้า/วัตถุดิบ 4 ประตูขึ้นไป ทรงสูง" loading="lazy" decoding="async" width="800" height="800">
+              </div>
+              <div class="pacc-table-wrap">
+                <table class="ptable">
+                  <thead>
+                    <tr>
+                      <th data-lang-th="รายการซ่อม" data-lang-en="Repair item">รายการซ่อม</th>
+                      <th data-lang-th="ค่าบริการ" data-lang-en="Price">ค่าบริการ</th>
+                      <th data-lang-th="ระยะเวลา" data-lang-en="Time">ระยะเวลา</th>
+                      <th data-lang-th="รับประกัน" data-lang-en="Warranty">รับประกัน</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><span data-lang-th="ระบบน้ำยารั่ว/ตัน R-134a" data-lang-en="Refrigerant leak / blockage (R-134a)">ระบบน้ำยารั่ว/ตัน R-134a</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="4,500-5,500 บาท" data-lang-en="฿4,500-5,500">4,500-5,500 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="90 นาที" data-lang-en="90 min">90 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="3 เดือน" data-lang-en="3 months">3 เดือน</td>
+                    </tr>
+                    <tr>
+                      <td><span data-lang-th="ระบบน้ำยารั่ว/ตัน R-22" data-lang-en="Refrigerant leak / blockage (R-22)">ระบบน้ำยารั่ว/ตัน R-22</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="4,000-5,500 บาท" data-lang-en="฿4,000-5,500">4,000-5,500 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="90 นาที" data-lang-en="90 min">90 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="3 เดือน" data-lang-en="3 months">3 เดือน</td>
+                    </tr>
+                    <tr>
+                      <td><span data-lang-th="ระบบน้ำยารั่ว/ตัน R-404a" data-lang-en="Refrigerant leak / blockage (R-404a)">ระบบน้ำยารั่ว/ตัน R-404a</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="7,000-8,000 บาท" data-lang-en="฿7,000-8,000">7,000-8,000 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="90 นาที" data-lang-en="90 min">90 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="3 เดือน" data-lang-en="3 months">3 เดือน</td>
+                    </tr>
+                    <tr>
+                      <td><span data-lang-th="เทอร์โมสตัส" data-lang-en="Thermostat">เทอร์โมสตัส</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="2,500 บาท" data-lang-en="฿2,500">2,500 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="60 นาที" data-lang-en="60 min">60 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="3 เดือน" data-lang-en="3 months">3 เดือน</td>
+                    </tr>
+                    <tr>
+                      <td><span data-lang-th="เทอร์โมดิจิตอล คอนโทรล" data-lang-en="Digital thermostat controller">เทอร์โมดิจิตอล คอนโทรล</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="3,500-6,500 บาท" data-lang-en="฿3,500-6,500">3,500-6,500 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="60 นาที" data-lang-en="60 min">60 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="3 เดือน" data-lang-en="3 months">3 เดือน</td>
+                    </tr>
+                    <tr>
+                      <td><span data-lang-th="มอเตอร์พัดลม" data-lang-en="Fan motor">มอเตอร์พัดลม</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="2,500 บาท" data-lang-en="฿2,500">2,500 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="60 นาที" data-lang-en="60 min">60 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="3 เดือน" data-lang-en="3 months">3 เดือน</td>
+                    </tr>
+                    <tr>
+                      <td><span data-lang-th="เปลี่ยนคอมเพรสเซอร์" data-lang-en="Compressor replacement">เปลี่ยนคอมเพรสเซอร์</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="12,000-25,000 บาท" data-lang-en="฿12,000-25,000">12,000-25,000 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="90 นาที" data-lang-en="90 min">90 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="1 เดือน" data-lang-en="1 month">1 เดือน</td>
+                    </tr>
+                    <tr>
+                      <td><span data-lang-th="ชุดสตาร์ทคอมเพรสเซอร์" data-lang-en="Compressor start-relay kit">ชุดสตาร์ทคอมเพรสเซอร์</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="2,500-3,500 บาท" data-lang-en="฿2,500-3,500">2,500-3,500 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="60 นาที" data-lang-en="60 min">60 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="3 เดือน" data-lang-en="3 months">3 เดือน</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pacc-item reveal">
+        <button class="pacc-head" aria-expanded="false">
+          <span class="pacc-thumb"><img src="assets/img/pricing/thumb/fridge_09.jpg" alt="ซ่อมตู้แช่เค้ก ตู้แช่เบเกอรี่ ตู้แช่ขนม" loading="lazy" decoding="async" width="200" height="200"></span>
+          <span class="pacc-num">09</span>
+          <span class="pacc-title" data-lang-th="ตู้แช่เค้ก ตู้แช่เบเกอรี่ ตู้แช่ขนม" data-lang-en="Cake, Bakery &amp; Dessert Display Coolers">ตู้แช่เค้ก ตู้แช่เบเกอรี่ ตู้แช่ขนม</span>
+          <span class="pacc-from">
+            <small data-lang-th="เริ่มต้น" data-lang-en="from">เริ่มต้น</small>
+            <b>2,500</b>
+            <small data-lang-th="บาท" data-lang-en="THB">บาท</small>
+          </span>
+          <i data-lucide="plus" class="pacc-icon" width="20" height="20"></i>
+        </button>
+        <div class="pacc-panel">
+          <div>
+            <div class="pacc-body">
+              <div class="pacc-media">
+                <img src="assets/img/pricing/fridge_09.jpg" alt="ซ่อมตู้แช่เค้ก ตู้แช่เบเกอรี่ ตู้แช่ขนม" loading="lazy" decoding="async" width="800" height="800">
+              </div>
+              <div class="pacc-table-wrap">
+                <table class="ptable">
+                  <thead>
+                    <tr>
+                      <th data-lang-th="รายการซ่อม" data-lang-en="Repair item">รายการซ่อม</th>
+                      <th data-lang-th="ค่าบริการ" data-lang-en="Price">ค่าบริการ</th>
+                      <th data-lang-th="ระยะเวลา" data-lang-en="Time">ระยะเวลา</th>
+                      <th data-lang-th="รับประกัน" data-lang-en="Warranty">รับประกัน</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><span data-lang-th="ระบบน้ำยารั่ว/ตัน R-134a" data-lang-en="Refrigerant leak / blockage (R-134a)">ระบบน้ำยารั่ว/ตัน R-134a</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="4,000-5,000 บาท" data-lang-en="฿4,000-5,000">4,000-5,000 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="90 นาที" data-lang-en="90 min">90 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="3 เดือน" data-lang-en="3 months">3 เดือน</td>
+                    </tr>
+                    <tr>
+                      <td><span data-lang-th="ระบบน้ำยารั่ว/ตัน R-22" data-lang-en="Refrigerant leak / blockage (R-22)">ระบบน้ำยารั่ว/ตัน R-22</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="4,000-5,000 บาท" data-lang-en="฿4,000-5,000">4,000-5,000 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="90 นาที" data-lang-en="90 min">90 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="3 เดือน" data-lang-en="3 months">3 เดือน</td>
+                    </tr>
+                    <tr>
+                      <td><span data-lang-th="ระบบน้ำยารั่ว/ตัน R-404a" data-lang-en="Refrigerant leak / blockage (R-404a)">ระบบน้ำยารั่ว/ตัน R-404a</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="5,000-6,000 บาท" data-lang-en="฿5,000-6,000">5,000-6,000 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="90 นาที" data-lang-en="90 min">90 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="3 เดือน" data-lang-en="3 months">3 เดือน</td>
+                    </tr>
+                    <tr>
+                      <td><span data-lang-th="เทอร์โมสตัส" data-lang-en="Thermostat">เทอร์โมสตัส</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="2,500 บาท" data-lang-en="฿2,500">2,500 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="60 นาที" data-lang-en="60 min">60 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="3 เดือน" data-lang-en="3 months">3 เดือน</td>
+                    </tr>
+                    <tr>
+                      <td><span data-lang-th="เทอร์โมดิจิตอล คอนโทรล" data-lang-en="Digital thermostat controller">เทอร์โมดิจิตอล คอนโทรล</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="3,500-4,500 บาท" data-lang-en="฿3,500-4,500">3,500-4,500 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="60 นาที" data-lang-en="60 min">60 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="3 เดือน" data-lang-en="3 months">3 เดือน</td>
+                    </tr>
+                    <tr>
+                      <td><span data-lang-th="มอเตอร์พัดลม" data-lang-en="Fan motor">มอเตอร์พัดลม</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="2,500 บาท" data-lang-en="฿2,500">2,500 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="60 นาที" data-lang-en="60 min">60 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="3 เดือน" data-lang-en="3 months">3 เดือน</td>
+                    </tr>
+                    <tr>
+                      <td><span data-lang-th="เปลี่ยนคอมเพรสเซอร์" data-lang-en="Compressor replacement">เปลี่ยนคอมเพรสเซอร์</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="9,500-12,000 บาท" data-lang-en="฿9,500-12,000">9,500-12,000 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="60 นาที" data-lang-en="60 min">60 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="1 เดือน" data-lang-en="1 month">1 เดือน</td>
+                    </tr>
+                    <tr>
+                      <td><span data-lang-th="ชุดสตาร์ทคอมเพรสเซอร์" data-lang-en="Compressor start-relay kit">ชุดสตาร์ทคอมเพรสเซอร์</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="2,500 บาท" data-lang-en="฿2,500">2,500 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="30 นาที" data-lang-en="30 min">30 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="3 เดือน" data-lang-en="3 months">3 เดือน</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pacc-item reveal">
+        <button class="pacc-head" aria-expanded="false">
+          <span class="pacc-thumb"><img src="assets/img/pricing/thumb/fridge_010.jpg" alt="ซ่อมตู้แช่ไวน์ ทุกรุ่น ทุกยี่ห้อ" loading="lazy" decoding="async" width="200" height="200"></span>
+          <span class="pacc-num">10</span>
+          <span class="pacc-title" data-lang-th="ตู้แช่ไวน์ ทุกรุ่น ทุกยี่ห้อ" data-lang-en="Wine Coolers, All Models &amp; Brands">ตู้แช่ไวน์ ทุกรุ่น ทุกยี่ห้อ</span>
+          <span class="pacc-from">
+            <small data-lang-th="เริ่มต้น" data-lang-en="from">เริ่มต้น</small>
+            <b>2,000</b>
+            <small data-lang-th="บาท" data-lang-en="THB">บาท</small>
+          </span>
+          <i data-lucide="plus" class="pacc-icon" width="20" height="20"></i>
+        </button>
+        <div class="pacc-panel">
+          <div>
+            <div class="pacc-body">
+              <div class="pacc-media">
+                <img src="assets/img/pricing/fridge_010.jpg" alt="ซ่อมตู้แช่ไวน์ ทุกรุ่น ทุกยี่ห้อ" loading="lazy" decoding="async" width="800" height="800">
+              </div>
+              <div class="pacc-table-wrap">
+                <table class="ptable">
+                  <thead>
+                    <tr>
+                      <th data-lang-th="รายการซ่อม" data-lang-en="Repair item">รายการซ่อม</th>
+                      <th data-lang-th="ค่าบริการ" data-lang-en="Price">ค่าบริการ</th>
+                      <th data-lang-th="ระยะเวลา" data-lang-en="Time">ระยะเวลา</th>
+                      <th data-lang-th="รับประกัน" data-lang-en="Warranty">รับประกัน</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><span data-lang-th="ระบบน้ำยารั่ว/ตัน R-134a" data-lang-en="Refrigerant leak / blockage (R-134a)">ระบบน้ำยารั่ว/ตัน R-134a</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="3,000-4,000 บาท" data-lang-en="฿3,000-4,000">3,000-4,000 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="90 นาที" data-lang-en="90 min">90 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="3 เดือน" data-lang-en="3 months">3 เดือน</td>
+                    </tr>
+                    <tr>
+                      <td><span data-lang-th="เทอร์โมสตัส" data-lang-en="Thermostat">เทอร์โมสตัส</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="2,000-2,500 บาท" data-lang-en="฿2,000-2,500">2,000-2,500 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="60 นาที" data-lang-en="60 min">60 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="3 เดือน" data-lang-en="3 months">3 เดือน</td>
+                    </tr>
+                    <tr>
+                      <td><span data-lang-th="เทอร์โมดิจิตอล คอนโทรล" data-lang-en="Digital thermostat controller">เทอร์โมดิจิตอล คอนโทรล</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="3,000-4,000 บาท" data-lang-en="฿3,000-4,000">3,000-4,000 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="60 นาที" data-lang-en="60 min">60 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="3 เดือน" data-lang-en="3 months">3 เดือน</td>
+                    </tr>
+                    <tr>
+                      <td><span data-lang-th="มอเตอร์พัดลม" data-lang-en="Fan motor">มอเตอร์พัดลม</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="2,500 บาท" data-lang-en="฿2,500">2,500 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="60 นาที" data-lang-en="60 min">60 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="3 เดือน" data-lang-en="3 months">3 เดือน</td>
+                    </tr>
+                    <tr>
+                      <td><span data-lang-th="เปลี่ยนคอมเพรสเซอร์" data-lang-en="Compressor replacement">เปลี่ยนคอมเพรสเซอร์</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="5,500-7,500 บาท" data-lang-en="฿5,500-7,500">5,500-7,500 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="90 นาที" data-lang-en="90 min">90 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="1 เดือน" data-lang-en="1 month">1 เดือน</td>
+                    </tr>
+                    <tr>
+                      <td><span data-lang-th="ชุดสตาร์ทคอมเพรสเซอร์" data-lang-en="Compressor start-relay kit">ชุดสตาร์ทคอมเพรสเซอร์</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="2,500 บาท" data-lang-en="฿2,500">2,500 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="60 นาที" data-lang-en="60 min">60 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="3 เดือน" data-lang-en="3 months">3 เดือน</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pacc-item reveal">
+        <button class="pacc-head" aria-expanded="false">
+          <span class="pacc-thumb"><img src="assets/img/pricing/thumb/fridge_011.jpg" alt="ซ่อมตู้แช่ทั่วไป ทุกชนิด" loading="lazy" decoding="async" width="200" height="200"></span>
+          <span class="pacc-num">11</span>
+          <span class="pacc-title" data-lang-th="ตู้แช่ทั่วไป ทุกชนิด" data-lang-en="General-Purpose Coolers, Every Type">ตู้แช่ทั่วไป ทุกชนิด</span>
+          <span class="pacc-from">
+            <small data-lang-th="เริ่มต้น" data-lang-en="from">เริ่มต้น</small>
+            <b>2,500</b>
+            <small data-lang-th="บาท" data-lang-en="THB">บาท</small>
+          </span>
+          <i data-lucide="plus" class="pacc-icon" width="20" height="20"></i>
+        </button>
+        <div class="pacc-panel">
+          <div>
+            <div class="pacc-body">
+              <div class="pacc-media">
+                <img src="assets/img/pricing/fridge_011.jpg" alt="ซ่อมตู้แช่ทั่วไป ทุกชนิด" loading="lazy" decoding="async" width="800" height="800">
+              </div>
+              <div class="pacc-table-wrap">
+                <table class="ptable">
+                  <thead>
+                    <tr>
+                      <th data-lang-th="รายการซ่อม" data-lang-en="Repair item">รายการซ่อม</th>
+                      <th data-lang-th="ค่าบริการ" data-lang-en="Price">ค่าบริการ</th>
+                      <th data-lang-th="ระยะเวลา" data-lang-en="Time">ระยะเวลา</th>
+                      <th data-lang-th="รับประกัน" data-lang-en="Warranty">รับประกัน</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><span data-lang-th="ระบบน้ำยารั่ว/ตัน R-134a" data-lang-en="Refrigerant leak / blockage (R-134a)">ระบบน้ำยารั่ว/ตัน R-134a</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="3,000-4,000 บาท" data-lang-en="฿3,000-4,000">3,000-4,000 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="90 นาที" data-lang-en="90 min">90 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="3 เดือน" data-lang-en="3 months">3 เดือน</td>
+                    </tr>
+                    <tr>
+                      <td><span data-lang-th="ระบบน้ำยารั่ว/ตัน R-404a" data-lang-en="Refrigerant leak / blockage (R-404a)">ระบบน้ำยารั่ว/ตัน R-404a</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="4,000-7,500 บาท" data-lang-en="฿4,000-7,500">4,000-7,500 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="90 นาที" data-lang-en="90 min">90 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="3 เดือน" data-lang-en="3 months">3 เดือน</td>
+                    </tr>
+                    <tr>
+                      <td><span data-lang-th="เทอร์โมสตัส" data-lang-en="Thermostat">เทอร์โมสตัส</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="2,500 บาท" data-lang-en="฿2,500">2,500 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="60 นาที" data-lang-en="60 min">60 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="3 เดือน" data-lang-en="3 months">3 เดือน</td>
+                    </tr>
+                    <tr>
+                      <td><span data-lang-th="เทอร์โมดิจิตอล คอนโทรล" data-lang-en="Digital thermostat controller">เทอร์โมดิจิตอล คอนโทรล</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="3,500-5,500 บาท" data-lang-en="฿3,500-5,500">3,500-5,500 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="60 นาที" data-lang-en="60 min">60 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="3 เดือน" data-lang-en="3 months">3 เดือน</td>
+                    </tr>
+                    <tr>
+                      <td><span data-lang-th="มอเตอร์พัดลม" data-lang-en="Fan motor">มอเตอร์พัดลม</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="2,500 บาท" data-lang-en="฿2,500">2,500 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="60 นาที" data-lang-en="60 min">60 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="3 เดือน" data-lang-en="3 months">3 เดือน</td>
+                    </tr>
+                    <tr>
+                      <td><span data-lang-th="เปลี่ยนคอมเพรสเซอร์" data-lang-en="Compressor replacement">เปลี่ยนคอมเพรสเซอร์</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="6,500-8,500 บาท" data-lang-en="฿6,500-8,500">6,500-8,500 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="60 นาที" data-lang-en="60 min">60 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="1 เดือน" data-lang-en="1 month">1 เดือน</td>
+                    </tr>
+                    <tr>
+                      <td><span data-lang-th="ชุดสตาร์ทคอมเพรสเซอร์" data-lang-en="Compressor start-relay kit">ชุดสตาร์ทคอมเพรสเซอร์</span></td>
+                      <td class="cell-price" data-label="ค่าบริการ" data-label-th="ค่าบริการ" data-label-en="Price" data-lang-th="2,500 บาท" data-lang-en="฿2,500">2,500 บาท</td>
+                      <td data-label="ระยะเวลา" data-label-th="ระยะเวลา" data-label-en="Time" data-lang-th="30 นาที" data-lang-en="30 min">30 นาที</td>
+                      <td data-label="รับประกัน" data-label-th="รับประกัน" data-label-en="Warranty" data-lang-th="3 เดือน" data-lang-en="3 months">3 เดือน</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="pricing-foot reveal" data-lang-th="* ราคาอาจเปลี่ยนแปลงตามสภาพเครื่องและรุ่นของอะไหล่ ช่างจะแจ้งราคาสุทธิให้ทราบก่อนเริ่มซ่อมเสมอ สอบถามราคาเพิ่มเติม โทร 095-628-6980" data-lang-en="* Final pricing may vary with the condition of the unit and the parts required. Our technician always confirms the exact price before starting. For a quote, call 095-628-6980.">* ราคาอาจเปลี่ยนแปลงตามสภาพเครื่องและรุ่นของอะไหล่ ช่างจะแจ้งราคาสุทธิให้ทราบก่อนเริ่มซ่อมเสมอ สอบถามราคาเพิ่มเติม โทร 095-628-6980</p>
   </div>
 </section>
 
@@ -723,20 +1856,20 @@
   <div class="container">
     <div class="stats-grid">
       <div class="stat">
-        <div class="stat-num">15+</div>
-        <div class="stat-label" data-lang-th="ปีแห่งความเชี่ยวชาญ" data-lang-en="Years of Expertise">ปีแห่งความเชี่ยวชาญ</div>
+        <div class="stat-num">10+</div>
+        <div class="stat-label" data-lang-th="ปีประสบการณ์" data-lang-en="Years of Experience">ปีประสบการณ์</div>
       </div>
       <div class="stat">
-        <div class="stat-num">3,200+</div>
-        <div class="stat-label" data-lang-th="เครื่องที่ซ่อมสำเร็จ" data-lang-en="Units Repaired">เครื่องที่ซ่อมสำเร็จ</div>
+        <div class="stat-num" data-lang-th="1 ชม." data-lang-en="1 hr">1 ชม.</div>
+        <div class="stat-label" data-lang-th="ถึงบ้านคุณ" data-lang-en="To Your Door">ถึงบ้านคุณ</div>
       </div>
       <div class="stat">
-        <div class="stat-num">98%</div>
-        <div class="stat-label" data-lang-th="ความพึงพอใจของลูกค้า" data-lang-en="Client Satisfaction">ความพึงพอใจของลูกค้า</div>
+        <div class="stat-num" data-lang-th="3 เดือน" data-lang-en="3 mo.">3 เดือน</div>
+        <div class="stat-label" data-lang-th="รับประกันงานซ่อม" data-lang-en="Repair Warranty">รับประกันงานซ่อม</div>
       </div>
       <div class="stat">
         <div class="stat-num" data-lang-th="24 ชม." data-lang-en="24 hrs">24 ชม.</div>
-        <div class="stat-label" data-lang-th="บริการฉุกเฉิน" data-lang-en="Emergency Availability">บริการฉุกเฉิน</div>
+        <div class="stat-label" data-lang-th="บริการทุกวัน" data-lang-en="Every Day">บริการทุกวัน</div>
       </div>
     </div>
   </div>
@@ -746,13 +1879,13 @@
   <div class="container">
     <div class="trust-head reveal">
       <span class="eyebrow" data-lang-th="ความไว้วางใจ" data-lang-en="Why Trust Us">ความไว้วางใจ</span>
-      <h2 data-lang-th="ทำไมต้องนิตยา บุญแสนรัน" data-lang-en="Why นิตยา บุญแสนรัน">ทำไมต้องนิตยา บุญแสนรัน</h2>
+      <h2 data-lang-th="ทำไมต้องช่างวัฒนา" data-lang-en="Why Chang Watthana — Smart Intercool">ทำไมต้องช่างวัฒนา</h2>
     </div>
 
     <div class="row reveal">
       <div class="row-img">
         <div class="frame">
-          <img src="https://images.unsplash.com/photo-1536353284924-9220c464e262?w=700&h=560&fit=crop" alt="ตู้เย็นสเตนเลสประตูคู่">
+          <img src="assets/img/line_oa_chat_260818_154438.jpg" alt="ตรวจวัดแรงดันน้ำยาและคอมเพรสเซอร์ด้วยเกจวัดมืออาชีพ" loading="lazy" width="700" height="560">
         </div>
       </div>
       <div class="row-text">
@@ -765,7 +1898,7 @@
     <div class="row reverse reveal">
       <div class="row-img">
         <div class="frame">
-          <img src="https://images.unsplash.com/photo-1722859178634-ccc8ea5680d2?w=700&h=560&fit=crop" alt="ห้องครัวพร้อมเครื่องใช้สเตนเลส">
+          <img src="assets/img/line_oa_chat_260818_154346.jpg" alt="อุปกรณ์ทำสุญญากาศและอะไหล่คุณภาพสำหรับงานซ่อมตู้เย็น" loading="lazy" width="700" height="560">
         </div>
       </div>
       <div class="row-text">
@@ -778,7 +1911,7 @@
     <div class="row reveal">
       <div class="row-img">
         <div class="frame">
-          <img src="https://images.unsplash.com/photo-1605900009749-b3cdb75ce9c5?w=700&h=560&fit=crop" alt="เครื่องมือช่างจัดเรียงอย่างเป็นระเบียบ">
+          <img src="assets/img/line_oa_chat_260818_154350.jpg" alt="ช่างวัฒนาทำงานซ่อมระบบทำความเย็นหน้างานลูกค้า" loading="lazy" width="700" height="560">
         </div>
       </div>
       <div class="row-text">
@@ -786,6 +1919,102 @@
         <h3 data-lang-th="ทีมช่างที่ผ่านการรับรอง" data-lang-en="Certified Technicians You Can Trust">ทีมช่างที่ผ่านการรับรอง</h3>
         <p data-lang-th="ช่างทุกคนผ่านการฝึกอบรมและได้รับการรับรองมาตรฐาน เข้าใจระบบทำความเย็นทุกประเภท พร้อมมารยาทในการเข้าให้บริการที่บ้านคุณ" data-lang-en="Every technician is trained and certified, understands every type of cooling system, and follows a code of conduct built for working respectfully in your home.">ช่างทุกคนผ่านการฝึกอบรมและได้รับการรับรองมาตรฐาน เข้าใจระบบทำความเย็นทุกประเภท พร้อมมารยาทในการเข้าให้บริการที่บ้านคุณ</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery" id="gallery">
+  <div class="container">
+    <div class="gallery-head reveal">
+      <span class="eyebrow" data-lang-th="แกลเลอรี่ผลงาน" data-lang-en="Our Work">แกลเลอรี่ผลงาน</span>
+      <h2 data-lang-th="ภาพการทำงานจริง หน้างานลูกค้า" data-lang-en="Real Jobs, Real Customer Sites">ภาพการทำงานจริง หน้างานลูกค้า</h2>
+      <p class="gallery-note" data-lang-th="รวมภาพผลงานการซ่อมตู้เย็นและตู้แช่ให้กับลูกค้าในกรุงเทพฯ และปริมณฑล ทั้งบ้านพักอาศัย คอนโด หอพัก ร้านค้า และร้านอาหาร" data-lang-en="A record of refrigerator and cooler repairs carried out for customers across Bangkok and its surrounding provinces — homes, condos, dormitories, shops and restaurants.">รวมภาพผลงานการซ่อมตู้เย็นและตู้แช่ให้กับลูกค้าในกรุงเทพฯ และปริมณฑล ทั้งบ้านพักอาศัย คอนโด หอพัก ร้านค้า และร้านอาหาร</p>
+    </div>
+    <div class="gal-grid reveal">
+      <button class="gal-item" type="button" aria-label="ดูภาพผลงานที่ 1">
+        <img src="assets/img/thumb/line_oa_chat_260818_154317.jpg" data-full="assets/img/line_oa_chat_260818_154317.jpg" alt="ผลงานซ่อมตู้เย็น ตู้แช่ นอกสถานที่ โดยช่างวัฒนา ภาพที่ 1" loading="lazy" decoding="async" width="450" height="600">
+      </button>
+      <button class="gal-item" type="button" aria-label="ดูภาพผลงานที่ 2">
+        <img src="assets/img/thumb/line_oa_chat_260818_154320.jpg" data-full="assets/img/line_oa_chat_260818_154320.jpg" alt="ผลงานซ่อมตู้เย็น ตู้แช่ นอกสถานที่ โดยช่างวัฒนา ภาพที่ 2" loading="lazy" decoding="async" width="450" height="600">
+      </button>
+      <button class="gal-item" type="button" aria-label="ดูภาพผลงานที่ 3">
+        <img src="assets/img/thumb/line_oa_chat_260818_154324.jpg" data-full="assets/img/line_oa_chat_260818_154324.jpg" alt="ผลงานซ่อมตู้เย็น ตู้แช่ นอกสถานที่ โดยช่างวัฒนา ภาพที่ 3" loading="lazy" decoding="async" width="450" height="600">
+      </button>
+      <button class="gal-item" type="button" aria-label="ดูภาพผลงานที่ 4">
+        <img src="assets/img/thumb/line_oa_chat_260818_154330.jpg" data-full="assets/img/line_oa_chat_260818_154330.jpg" alt="ผลงานซ่อมตู้เย็น ตู้แช่ นอกสถานที่ โดยช่างวัฒนา ภาพที่ 4" loading="lazy" decoding="async" width="450" height="600">
+      </button>
+      <button class="gal-item" type="button" aria-label="ดูภาพผลงานที่ 5">
+        <img src="assets/img/thumb/line_oa_chat_260818_154333.jpg" data-full="assets/img/line_oa_chat_260818_154333.jpg" alt="ผลงานซ่อมตู้เย็น ตู้แช่ นอกสถานที่ โดยช่างวัฒนา ภาพที่ 5" loading="lazy" decoding="async" width="450" height="600">
+      </button>
+      <button class="gal-item" type="button" aria-label="ดูภาพผลงานที่ 6">
+        <img src="assets/img/thumb/line_oa_chat_260818_154336.jpg" data-full="assets/img/line_oa_chat_260818_154336.jpg" alt="ผลงานซ่อมตู้เย็น ตู้แช่ นอกสถานที่ โดยช่างวัฒนา ภาพที่ 6" loading="lazy" decoding="async" width="450" height="600">
+      </button>
+      <button class="gal-item" type="button" aria-label="ดูภาพผลงานที่ 7">
+        <img src="assets/img/thumb/line_oa_chat_260818_154341.jpg" data-full="assets/img/line_oa_chat_260818_154341.jpg" alt="ผลงานซ่อมตู้เย็น ตู้แช่ นอกสถานที่ โดยช่างวัฒนา ภาพที่ 7" loading="lazy" decoding="async" width="450" height="600">
+      </button>
+      <button class="gal-item" type="button" aria-label="ดูภาพผลงานที่ 8">
+        <img src="assets/img/thumb/line_oa_chat_260818_154343.jpg" data-full="assets/img/line_oa_chat_260818_154343.jpg" alt="ผลงานซ่อมตู้เย็น ตู้แช่ นอกสถานที่ โดยช่างวัฒนา ภาพที่ 8" loading="lazy" decoding="async" width="450" height="600">
+      </button>
+      <button class="gal-item" type="button" aria-label="ดูภาพผลงานที่ 9">
+        <img src="assets/img/thumb/line_oa_chat_260818_154346.jpg" data-full="assets/img/line_oa_chat_260818_154346.jpg" alt="ผลงานซ่อมตู้เย็น ตู้แช่ นอกสถานที่ โดยช่างวัฒนา ภาพที่ 9" loading="lazy" decoding="async" width="450" height="600">
+      </button>
+      <button class="gal-item" type="button" aria-label="ดูภาพผลงานที่ 10">
+        <img src="assets/img/thumb/line_oa_chat_260818_154350.jpg" data-full="assets/img/line_oa_chat_260818_154350.jpg" alt="ผลงานซ่อมตู้เย็น ตู้แช่ นอกสถานที่ โดยช่างวัฒนา ภาพที่ 10" loading="lazy" decoding="async" width="450" height="600">
+      </button>
+      <button class="gal-item" type="button" aria-label="ดูภาพผลงานที่ 11">
+        <img src="assets/img/thumb/line_oa_chat_260818_154353.jpg" data-full="assets/img/line_oa_chat_260818_154353.jpg" alt="ผลงานซ่อมตู้เย็น ตู้แช่ นอกสถานที่ โดยช่างวัฒนา ภาพที่ 11" loading="lazy" decoding="async" width="450" height="600">
+      </button>
+      <button class="gal-item" type="button" aria-label="ดูภาพผลงานที่ 12">
+        <img src="assets/img/thumb/line_oa_chat_260818_154411.jpg" data-full="assets/img/line_oa_chat_260818_154411.jpg" alt="ผลงานซ่อมตู้เย็น ตู้แช่ นอกสถานที่ โดยช่างวัฒนา ภาพที่ 12" loading="lazy" decoding="async" width="450" height="600">
+      </button>
+      <button class="gal-item is-hidden" type="button" aria-label="ดูภาพผลงานที่ 13">
+        <img src="assets/img/thumb/line_oa_chat_260818_154414.jpg" data-full="assets/img/line_oa_chat_260818_154414.jpg" alt="ผลงานซ่อมตู้เย็น ตู้แช่ นอกสถานที่ โดยช่างวัฒนา ภาพที่ 13" loading="lazy" decoding="async" width="450" height="600">
+      </button>
+      <button class="gal-item is-hidden" type="button" aria-label="ดูภาพผลงานที่ 14">
+        <img src="assets/img/thumb/line_oa_chat_260818_154417.jpg" data-full="assets/img/line_oa_chat_260818_154417.jpg" alt="ผลงานซ่อมตู้เย็น ตู้แช่ นอกสถานที่ โดยช่างวัฒนา ภาพที่ 14" loading="lazy" decoding="async" width="450" height="600">
+      </button>
+      <button class="gal-item is-hidden" type="button" aria-label="ดูภาพผลงานที่ 15">
+        <img src="assets/img/thumb/line_oa_chat_260818_154420.jpg" data-full="assets/img/line_oa_chat_260818_154420.jpg" alt="ผลงานซ่อมตู้เย็น ตู้แช่ นอกสถานที่ โดยช่างวัฒนา ภาพที่ 15" loading="lazy" decoding="async" width="450" height="600">
+      </button>
+      <button class="gal-item is-hidden" type="button" aria-label="ดูภาพผลงานที่ 16">
+        <img src="assets/img/thumb/line_oa_chat_260818_154422.jpg" data-full="assets/img/line_oa_chat_260818_154422.jpg" alt="ผลงานซ่อมตู้เย็น ตู้แช่ นอกสถานที่ โดยช่างวัฒนา ภาพที่ 16" loading="lazy" decoding="async" width="450" height="600">
+      </button>
+      <button class="gal-item is-hidden" type="button" aria-label="ดูภาพผลงานที่ 17">
+        <img src="assets/img/thumb/line_oa_chat_260818_154425.jpg" data-full="assets/img/line_oa_chat_260818_154425.jpg" alt="ผลงานซ่อมตู้เย็น ตู้แช่ นอกสถานที่ โดยช่างวัฒนา ภาพที่ 17" loading="lazy" decoding="async" width="450" height="600">
+      </button>
+      <button class="gal-item is-hidden" type="button" aria-label="ดูภาพผลงานที่ 18">
+        <img src="assets/img/thumb/line_oa_chat_260818_154427.jpg" data-full="assets/img/line_oa_chat_260818_154427.jpg" alt="ผลงานซ่อมตู้เย็น ตู้แช่ นอกสถานที่ โดยช่างวัฒนา ภาพที่ 18" loading="lazy" decoding="async" width="450" height="600">
+      </button>
+      <button class="gal-item is-hidden" type="button" aria-label="ดูภาพผลงานที่ 19">
+        <img src="assets/img/thumb/line_oa_chat_260818_154430.jpg" data-full="assets/img/line_oa_chat_260818_154430.jpg" alt="ผลงานซ่อมตู้เย็น ตู้แช่ นอกสถานที่ โดยช่างวัฒนา ภาพที่ 19" loading="lazy" decoding="async" width="450" height="600">
+      </button>
+      <button class="gal-item is-hidden" type="button" aria-label="ดูภาพผลงานที่ 20">
+        <img src="assets/img/thumb/line_oa_chat_260818_154433.jpg" data-full="assets/img/line_oa_chat_260818_154433.jpg" alt="ผลงานซ่อมตู้เย็น ตู้แช่ นอกสถานที่ โดยช่างวัฒนา ภาพที่ 20" loading="lazy" decoding="async" width="450" height="600">
+      </button>
+      <button class="gal-item is-hidden" type="button" aria-label="ดูภาพผลงานที่ 21">
+        <img src="assets/img/thumb/line_oa_chat_260818_154435.jpg" data-full="assets/img/line_oa_chat_260818_154435.jpg" alt="ผลงานซ่อมตู้เย็น ตู้แช่ นอกสถานที่ โดยช่างวัฒนา ภาพที่ 21" loading="lazy" decoding="async" width="450" height="600">
+      </button>
+      <button class="gal-item is-hidden" type="button" aria-label="ดูภาพผลงานที่ 22">
+        <img src="assets/img/thumb/line_oa_chat_260818_154438.jpg" data-full="assets/img/line_oa_chat_260818_154438.jpg" alt="ผลงานซ่อมตู้เย็น ตู้แช่ นอกสถานที่ โดยช่างวัฒนา ภาพที่ 22" loading="lazy" decoding="async" width="450" height="600">
+      </button>
+      <button class="gal-item is-hidden" type="button" aria-label="ดูภาพผลงานที่ 23">
+        <img src="assets/img/thumb/line_oa_chat_260818_154441.jpg" data-full="assets/img/line_oa_chat_260818_154441.jpg" alt="ผลงานซ่อมตู้เย็น ตู้แช่ นอกสถานที่ โดยช่างวัฒนา ภาพที่ 23" loading="lazy" decoding="async" width="450" height="600">
+      </button>
+      <button class="gal-item is-hidden" type="button" aria-label="ดูภาพผลงานที่ 24">
+        <img src="assets/img/thumb/line_oa_chat_260818_154444.jpg" data-full="assets/img/line_oa_chat_260818_154444.jpg" alt="ผลงานซ่อมตู้เย็น ตู้แช่ นอกสถานที่ โดยช่างวัฒนา ภาพที่ 24" loading="lazy" decoding="async" width="450" height="600">
+      </button>
+      <button class="gal-item is-hidden" type="button" aria-label="ดูภาพผลงานที่ 25">
+        <img src="assets/img/thumb/line_oa_chat_260818_154447.jpg" data-full="assets/img/line_oa_chat_260818_154447.jpg" alt="ผลงานซ่อมตู้เย็น ตู้แช่ นอกสถานที่ โดยช่างวัฒนา ภาพที่ 25" loading="lazy" decoding="async" width="450" height="600">
+      </button>
+      <button class="gal-item is-hidden" type="button" aria-label="ดูภาพผลงานที่ 26">
+        <img src="assets/img/thumb/line_oa_chat_260818_154450.jpg" data-full="assets/img/line_oa_chat_260818_154450.jpg" alt="ผลงานซ่อมตู้เย็น ตู้แช่ นอกสถานที่ โดยช่างวัฒนา ภาพที่ 26" loading="lazy" decoding="async" width="450" height="600">
+      </button>
+      <button class="gal-item is-hidden" type="button" aria-label="ดูภาพผลงานที่ 27">
+        <img src="assets/img/thumb/line_oa_chat_260818_154453.jpg" data-full="assets/img/line_oa_chat_260818_154453.jpg" alt="ผลงานซ่อมตู้เย็น ตู้แช่ นอกสถานที่ โดยช่างวัฒนา ภาพที่ 27" loading="lazy" decoding="async" width="450" height="600">
+      </button>
+    </div>
+    <div class="gal-more">
+      <button class="btn btn-secondary" id="galMore" type="button" data-lang-th="ดูผลงานเพิ่มเติม (15 ภาพ)" data-lang-en="View 15 more photos">ดูผลงานเพิ่มเติม (15 ภาพ)</button>
     </div>
   </div>
 </section>
@@ -838,21 +2067,63 @@
   <div class="container">
     <div class="area-head">
       <span class="eyebrow" data-lang-th="พื้นที่ให้บริการ" data-lang-en="Service Coverage">พื้นที่ให้บริการ</span>
-      <h2 data-lang-th="ให้บริการทั่วกรุงเทพฯและปริมณฑล" data-lang-en="Covering Bangkok and Surrounding Areas">ให้บริการทั่วกรุงเทพฯและปริมณฑล</h2>
-      <p class="area-note" data-lang-th="ทีมช่างของเราพร้อมเดินทางถึงบ้านคุณในเขตต่อไปนี้ พร้อมขยายพื้นที่บริการอย่างต่อเนื่อง" data-lang-en="Our team is ready to reach your home in the following districts, with coverage expanding continuously.">ทีมช่างของเราพร้อมเดินทางถึงบ้านคุณในเขตต่อไปนี้ พร้อมขยายพื้นที่บริการอย่างต่อเนื่อง</p>
+      <h2 data-lang-th="ให้บริการทั่วกรุงเทพฯ และปริมณฑล" data-lang-en="Covering Bangkok and the Surrounding Provinces">ให้บริการทั่วกรุงเทพฯ และปริมณฑล</h2>
+      <p class="area-note" data-lang-th="ทีมช่างของเรามีฐานอยู่เขตสายไหม กรุงเทพฯ พร้อมเดินทางถึงบ้าน คอนโด หอพัก ร้านค้า และร้านอาหารในพื้นที่ต่อไปนี้ รวมถึงพื้นที่ใกล้เคียง" data-lang-en="Our team is based in Sai Mai, Bangkok, and travels to homes, condos, dormitories, shops and restaurants across the following areas and nearby districts.">ทีมช่างของเรามีฐานอยู่เขตสายไหม กรุงเทพฯ พร้อมเดินทางถึงบ้าน คอนโด หอพัก ร้านค้า และร้านอาหารในพื้นที่ต่อไปนี้ รวมถึงพื้นที่ใกล้เคียง</p>
     </div>
     <div class="pills">
-      <span class="pill">สุขุมวิท</span>
-      <span class="pill">สาทร</span>
-      <span class="pill">ทองหล่อ</span>
-      <span class="pill">พระราม 9</span>
-      <span class="pill">ลาดพร้าว</span>
-      <span class="pill">บางนา</span>
-      <span class="pill">รัชดาภิเษก</span>
-      <span class="pill">อารีย์</span>
-      <span class="pill">ปิ่นเกล้า</span>
-      <span class="pill">นนทบุรี</span>
+      <span class="pill" data-lang-th="กรุงเทพมหานคร" data-lang-en="Bangkok">กรุงเทพมหานคร</span>
+      <span class="pill" data-lang-th="นนทบุรี" data-lang-en="Nonthaburi">นนทบุรี</span>
+      <span class="pill" data-lang-th="ปทุมธานี" data-lang-en="Pathum Thani">ปทุมธานี</span>
+      <span class="pill" data-lang-th="สมุทรปราการ" data-lang-en="Samut Prakan">สมุทรปราการ</span>
+      <span class="pill" data-lang-th="เขตสายไหม" data-lang-en="Sai Mai">เขตสายไหม</span>
+      <span class="pill" data-lang-th="และพื้นที่ใกล้เคียง" data-lang-en="&amp; nearby areas">และพื้นที่ใกล้เคียง</span>
     </div>
+  </div>
+</section>
+
+<section class="article" id="article">
+  <div class="container">
+    <div class="article-head reveal">
+      <span class="eyebrow" data-lang-th="บทความน่ารู้" data-lang-en="Knowledge">บทความน่ารู้</span>
+      <h2 data-lang-th="ซ่อมตู้เย็น นอกสถานที่ กรุงเทพฯ ปริมณฑล — ความรู้ก่อนเรียกช่าง" data-lang-en="On-Site Refrigerator Repair in Bangkok — What to Know Before You Call">ซ่อมตู้เย็น นอกสถานที่ กรุงเทพฯ ปริมณฑล — ความรู้ก่อนเรียกช่าง</h2>
+    </div>
+
+    <article class="article-body reveal">
+      <p data-lang-th="ตู้เย็นเป็นเครื่องใช้ไฟฟ้าที่สำคัญในทุกครัวเรือนและธุรกิจ เมื่อตู้เย็นเกิดปัญหา ไม่ว่าจะเป็นตู้เย็นไม่เย็น ตู้เย็นมีเสียงดัง หรือคอมเพรสเซอร์ทำงานผิดปกติ การเลือกใช้บริการซ่อมตู้เย็นจากช่างที่มีความเชี่ยวชาญจึงเป็นสิ่งสำคัญ" data-lang-en="A refrigerator is essential equipment in every home and business. When something goes wrong — no cooling, unusual noise, or a compressor behaving strangely — choosing a genuinely experienced technician matters.">ตู้เย็นเป็นเครื่องใช้ไฟฟ้าที่สำคัญในทุกครัวเรือนและธุรกิจ เมื่อตู้เย็นเกิดปัญหา ไม่ว่าจะเป็นตู้เย็นไม่เย็น ตู้เย็นมีเสียงดัง หรือคอมเพรสเซอร์ทำงานผิดปกติ การเลือกใช้บริการซ่อมตู้เย็นจากช่างที่มีความเชี่ยวชาญจึงเป็นสิ่งสำคัญ</p>
+
+      <h3 data-lang-th="ปัญหาตู้เย็นที่พบบ่อย" data-lang-en="Common Refrigerator Problems">ปัญหาตู้เย็นที่พบบ่อย</h3>
+      <p data-lang-th="การทราบสาเหตุเบื้องต้นจะช่วยให้คุณตัดสินใจได้ว่าควรเรียกช่างซ่อมหรือไม่" data-lang-en="Understanding the likely cause helps you decide whether it is time to call a technician.">การทราบสาเหตุเบื้องต้นจะช่วยให้คุณตัดสินใจได้ว่าควรเรียกช่างซ่อมหรือไม่</p>
+      <ul class="article-list">
+        <li><i data-lucide="minus" width="14" height="14"></i><span data-lang-th="<b>ตู้เย็นไม่เย็น หรือเย็นน้อยกว่าปกติ</b> — อาจเกิดจากน้ำยาแอร์หมด ระบบทำความเย็นรั่ว หรือคอมเพรสเซอร์เสื่อมสภาพ" data-lang-en="<b>No cooling, or weaker cooling than usual</b> — often an empty refrigerant charge, a leak in the cooling circuit, or a worn compressor."><b>ตู้เย็นไม่เย็น หรือเย็นน้อยกว่าปกติ</b> — อาจเกิดจากน้ำยาแอร์หมด ระบบทำความเย็นรั่ว หรือคอมเพรสเซอร์เสื่อมสภาพ</span></li>
+        <li><i data-lucide="minus" width="14" height="14"></i><span data-lang-th="<b>น้ำแข็งเกาะผิดปกติ</b> — ระบบละลายน้ำแข็งอัตโนมัติอาจมีปัญหา หรือยางขอบประตูชำรุด" data-lang-en="<b>Abnormal ice build-up</b> — the automatic defrost system may have failed, or the door gasket is damaged."><b>น้ำแข็งเกาะผิดปกติ</b> — ระบบละลายน้ำแข็งอัตโนมัติอาจมีปัญหา หรือยางขอบประตูชำรุด</span></li>
+        <li><i data-lucide="minus" width="14" height="14"></i><span data-lang-th="<b>เสียงดังผิดปกติ</b> — พัดลมหรือมอเตอร์อาจเสื่อมสภาพ ต้องการเปลี่ยนอะไหล่" data-lang-en="<b>Unusual noise</b> — a fan or motor is likely worn and needs replacing."><b>เสียงดังผิดปกติ</b> — พัดลมหรือมอเตอร์อาจเสื่อมสภาพ ต้องการเปลี่ยนอะไหล่</span></li>
+        <li><i data-lucide="minus" width="14" height="14"></i><span data-lang-th="<b>ไฟไม่ติด หรือตู้เย็นไม่ทำงาน</b> — อาจเป็นปัญหาทางไฟฟ้า ควรให้ช่างตรวจสอบโดยด่วน" data-lang-en="<b>No power, or the unit will not run</b> — likely an electrical fault; have a technician check it promptly."><b>ไฟไม่ติด หรือตู้เย็นไม่ทำงาน</b> — อาจเป็นปัญหาทางไฟฟ้า ควรให้ช่างตรวจสอบโดยด่วน</span></li>
+        <li><i data-lucide="minus" width="14" height="14"></i><span data-lang-th="<b>น้ำรั่วจากตู้เย็น</b> — ท่อระบายน้ำอุดตัน หรือถาดรองน้ำเต็ม" data-lang-en="<b>Water leaking from the unit</b> — a blocked drain line or a full drip tray."><b>น้ำรั่วจากตู้เย็น</b> — ท่อระบายน้ำอุดตัน หรือถาดรองน้ำเต็ม</span></li>
+      </ul>
+
+      <h3 data-lang-th="ทำไมต้องเลือกช่างวัฒนา ซ่อมตู้เย็น" data-lang-en="Why Choose Chang Watthana">ทำไมต้องเลือกช่างวัฒนา ซ่อมตู้เย็น</h3>
+      <p data-lang-th="ช่างวัฒนา — สมาร์ทอินเตอร์คูล ให้บริการซ่อมตู้เย็น ตู้แช่ นอกสถานที่ ครอบคลุมพื้นที่กรุงเทพมหานครและปริมณฑล ด้วยประสบการณ์กว่า 10 ปี เรามีความเชี่ยวชาญในการซ่อมตู้เย็นทุกประเภท ทุกยี่ห้อ" data-lang-en="Chang Watthana — Smart Intercool provides on-site refrigerator and cooler repair throughout Bangkok and its surrounding provinces. With more than 10 years of experience, we work on every type and brand of unit.">ช่างวัฒนา — สมาร์ทอินเตอร์คูล ให้บริการซ่อมตู้เย็น ตู้แช่ นอกสถานที่ ครอบคลุมพื้นที่กรุงเทพมหานครและปริมณฑล ด้วยประสบการณ์กว่า 10 ปี เรามีความเชี่ยวชาญในการซ่อมตู้เย็นทุกประเภท ทุกยี่ห้อ</p>
+      <ul class="article-list">
+        <li><i data-lucide="check" width="14" height="14"></i><span data-lang-th="<b>บริการรวดเร็ว</b> — ถึงบ้านลูกค้าภายใน 1 ชั่วโมง พร้อมให้บริการ 24 ชั่วโมง" data-lang-en="<b>Fast response</b> — on site within one hour, available 24 hours a day."><b>บริการรวดเร็ว</b> — ถึงบ้านลูกค้าภายใน 1 ชั่วโมง พร้อมให้บริการ 24 ชั่วโมง</span></li>
+        <li><i data-lucide="check" width="14" height="14"></i><span data-lang-th="<b>ราคาโปร่งใส</b> — แจ้งราคาก่อนซ่อม ไม่มีค่าใช้จ่ายแอบแฝง" data-lang-en="<b>Transparent pricing</b> — quoted before the work starts, with no hidden charges."><b>ราคาโปร่งใส</b> — แจ้งราคาก่อนซ่อม ไม่มีค่าใช้จ่ายแอบแฝง</span></li>
+        <li><i data-lucide="check" width="14" height="14"></i><span data-lang-th="<b>รับประกันผลงาน 3 เดือน</b> — มั่นใจในคุณภาพการซ่อม" data-lang-en="<b>Three-month warranty</b> — confidence in the quality of every repair."><b>รับประกันผลงาน 3 เดือน</b> — มั่นใจในคุณภาพการซ่อม</span></li>
+        <li><i data-lucide="check" width="14" height="14"></i><span data-lang-th="<b>อะไหล่คุณภาพ</b> — ใช้อะไหล่แท้และคุณภาพสูง ทนทาน ใช้งานได้ยาวนาน" data-lang-en="<b>Quality parts</b> — genuine, high-grade components built to last."><b>อะไหล่คุณภาพ</b> — ใช้อะไหล่แท้และคุณภาพสูง ทนทาน ใช้งานได้ยาวนาน</span></li>
+      </ul>
+
+      <h3 data-lang-th="วิธีดูแลรักษาตู้เย็นให้อายุการใช้งานยาวนาน" data-lang-en="How to Make Your Refrigerator Last">วิธีดูแลรักษาตู้เย็นให้อายุการใช้งานยาวนาน</h3>
+      <ul class="article-list">
+        <li><i data-lucide="minus" width="14" height="14"></i><span data-lang-th="ทำความสะอาดคอนเดนเซอร์ด้านหลังตู้เย็นอย่างน้อยปีละ 2 ครั้ง" data-lang-en="Clean the condenser coils at the back at least twice a year.">ทำความสะอาดคอนเดนเซอร์ด้านหลังตู้เย็นอย่างน้อยปีละ 2 ครั้ง</span></li>
+        <li><i data-lucide="minus" width="14" height="14"></i><span data-lang-th="ตรวจสอบยางขอบประตูว่ายังแนบสนิทหรือไม่" data-lang-en="Check that the door gasket still seals tightly.">ตรวจสอบยางขอบประตูว่ายังแนบสนิทหรือไม่</span></li>
+        <li><i data-lucide="minus" width="14" height="14"></i><span data-lang-th="ไม่ใส่อาหารร้อนเข้าตู้เย็นโดยตรง" data-lang-en="Never put hot food straight into the fridge.">ไม่ใส่อาหารร้อนเข้าตู้เย็นโดยตรง</span></li>
+        <li><i data-lucide="minus" width="14" height="14"></i><span data-lang-th="จัดเรียงอาหารให้มีช่องว่างสำหรับการไหลเวียนของอากาศ" data-lang-en="Arrange food so air can circulate freely.">จัดเรียงอาหารให้มีช่องว่างสำหรับการไหลเวียนของอากาศ</span></li>
+        <li><i data-lucide="minus" width="14" height="14"></i><span data-lang-th="ตั้งอุณหภูมิให้เหมาะสม ไม่ตั้งเย็นเกินไป" data-lang-en="Set a sensible temperature — colder is not always better.">ตั้งอุณหภูมิให้เหมาะสม ไม่ตั้งเย็นเกินไป</span></li>
+      </ul>
+
+      <div class="article-cta">
+        <p data-lang-th="หากตู้เย็นของคุณมีปัญหา อย่ารอช้า ติดต่อช่างวัฒนา ซ่อมตู้เย็นนอกสถานที่ วันนี้ เรายินดีให้คำปรึกษาฟรี" data-lang-en="If something is wrong with your unit, do not wait. Contact Chang Watthana today — advice is always free.">หากตู้เย็นของคุณมีปัญหา อย่ารอช้า ติดต่อช่างวัฒนา ซ่อมตู้เย็นนอกสถานที่ วันนี้ เรายินดีให้คำปรึกษาฟรี</p>
+        <a href="tel:0956286980" class="btn btn-primary"><i data-lucide="phone" width="16" height="16"></i><span data-lang-th="โทรปรึกษาฟรี" data-lang-en="Free consultation">โทรปรึกษาฟรี</span></a>
+      </div>
+    </article>
   </div>
 </section>
 
@@ -869,99 +2140,151 @@
             <i data-lucide="phone"></i>
             <div>
               <span class="label" data-lang-th="โทรศัพท์" data-lang-en="Phone">โทรศัพท์</span>
-              <span class="value">081-234-5678</span>
+              <a class="value" href="tel:0956286980">095-628-6980</a>
             </div>
           </div>
           <div class="contact-info-item">
             <i data-lucide="message-circle"></i>
             <div>
               <span class="label">LINE</span>
-              <span class="value">@nitaya.repair</span>
+              <a class="value" href="https://line.me/ti/p/lDq5cWlmaz" target="_blank" rel="noopener" data-lang-th="คลิกแชทเลย" data-lang-en="Tap to chat">คลิกแชทเลย</a>
             </div>
           </div>
           <div class="contact-info-item">
-            <i data-lucide="mail"></i>
+            <i data-lucide="globe"></i>
             <div>
-              <span class="label" data-lang-th="อีเมล" data-lang-en="Email">อีเมล</span>
-              <span class="value">contact@nitayarepair.co.th</span>
+              <span class="label" data-lang-th="เว็บไซต์" data-lang-en="Website">เว็บไซต์</span>
+              <a class="value" href="https://xn--42c7afi2bmdr1b7ac8c3a9e2e1ii.com/" target="_blank" rel="noopener">สมาร์ทอินเตอร์คูล.com</a>
             </div>
           </div>
           <div class="contact-info-item">
             <i data-lucide="map-pin"></i>
             <div>
               <span class="label" data-lang-th="พื้นที่บริการ" data-lang-en="Service Area">พื้นที่บริการ</span>
-              <span class="value" data-lang-th="กรุงเทพฯและปริมณฑล" data-lang-en="Bangkok and surrounding areas">กรุงเทพฯและปริมณฑล</span>
+              <span class="value" data-lang-th="กรุงเทพมหานคร และปริมณฑล" data-lang-en="Bangkok and surrounding provinces">กรุงเทพมหานคร และปริมณฑล</span>
             </div>
           </div>
           <div class="contact-info-item">
             <i data-lucide="clock"></i>
             <div>
               <span class="label" data-lang-th="เวลาทำการ" data-lang-en="Hours">เวลาทำการ</span>
-              <span class="value" data-lang-th="ทุกวัน 08:00 – 20:00" data-lang-en="Daily, 08:00 – 20:00">ทุกวัน 08:00 – 20:00</span>
+              <span class="value" data-lang-th="เปิดบริการ 24 ชั่วโมง ทุกวัน ไม่มีวันหยุด" data-lang-en="Open 24 hours, every day">เปิดบริการ 24 ชั่วโมง ทุกวัน ไม่มีวันหยุด</span>
             </div>
           </div>
         </div>
       </div>
 
-      <form class="form reveal" onsubmit="event.preventDefault();">
+      <div class="form-wrap reveal">
+        <form class="form" novalidate>
         <div class="field">
-          <label data-lang-th="ชื่อ-นามสกุล" data-lang-en="Full Name">ชื่อ-นามสกุล</label>
-          <input type="text" required>
+          <label for="f-name" data-lang-th="ชื่อ-นามสกุล" data-lang-en="Full Name">ชื่อ-นามสกุล</label>
+          <input id="f-name" name="name" type="text" autocomplete="name" required>
         </div>
         <div class="field">
-          <label data-lang-th="เบอร์โทรศัพท์" data-lang-en="Phone Number">เบอร์โทรศัพท์</label>
-          <input type="tel" required>
+          <label for="f-phone" data-lang-th="เบอร์โทรศัพท์" data-lang-en="Phone Number">เบอร์โทรศัพท์</label>
+          <input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" pattern="[0-9\-\+\s\(\)]{9,20}" required>
         </div>
         <div class="field">
-          <label data-lang-th="ประเภทเครื่องใช้ไฟฟ้า" data-lang-en="Appliance Type">ประเภทเครื่องใช้ไฟฟ้า</label>
-          <input type="text">
+          <label for="f-type" data-lang-th="ประเภทเครื่องใช้ไฟฟ้า" data-lang-en="Appliance Type">ประเภทเครื่องใช้ไฟฟ้า</label>
+          <input id="f-type" name="appliance" type="text">
         </div>
         <div class="field">
-          <label data-lang-th="รายละเอียดอาการ" data-lang-en="Describe the Issue">รายละเอียดอาการ</label>
-          <textarea rows="4"></textarea>
+          <label for="f-detail" data-lang-th="รายละเอียดอาการ" data-lang-en="Describe the Issue">รายละเอียดอาการ</label>
+          <textarea id="f-detail" name="detail" rows="4"></textarea>
         </div>
         <button type="submit" class="btn btn-primary" data-lang-th="ส่งคำขอนัดหมาย" data-lang-en="Send Request">ส่งคำขอนัดหมาย</button>
-      </form>
-    </div>
+        </form>
+        <div class="form-done" id="formDone" role="status" aria-live="polite">
+          <h3 data-lang-th="ได้รับคำขอของคุณแล้ว" data-lang-en="We have your request">ได้รับคำขอของคุณแล้ว</h3>
+          <p data-lang-th="เพื่อความรวดเร็วที่สุด แนะนำให้โทรหรือแชท LINE หาเราโดยตรง ช่างพร้อมรับสายตลอด 24 ชั่วโมง และประเมินอาการเบื้องต้นให้ฟรี" data-lang-en="For the fastest response, call or message us on LINE directly. We answer 24 hours a day and assess the problem for free.">เพื่อความรวดเร็วที่สุด แนะนำให้โทรหรือแชท LINE หาเราโดยตรง ช่างพร้อมรับสายตลอด 24 ชั่วโมง และประเมินอาการเบื้องต้นให้ฟรี</p>
+          <div class="done-ctas">
+            <a href="tel:0956286980" class="btn btn-primary"><i data-lucide="phone" width="16" height="16"></i>095-628-6980</a>
+            <a href="https://line.me/ti/p/lDq5cWlmaz" target="_blank" rel="noopener" class="btn btn-secondary"><i data-lucide="message-circle" width="16" height="16"></i><span data-lang-th="แชท LINE" data-lang-en="Chat on LINE">แชท LINE</span></a>
+          </div>
+        </div>
+      </div>
+      </div>
   </div>
 </section>
+
+</main>
 
 <footer>
   <div class="container">
     <div class="footer-top">
       <div class="footer-brand">
-        <span class="logo">นิตยา<span>·</span>บุญแสนรัน</span>
-        <p data-lang-th="บริการซ่อมตู้เย็นและระบบทำความเย็นถึงบ้าน ด้วยความแม่นยำและความสงบระดับพรีเมียม" data-lang-en="On-site refrigerator and cooling system repair, delivered with precision and premium calm.">บริการซ่อมตู้เย็นและระบบทำความเย็นถึงบ้าน ด้วยความแม่นยำและความสงบระดับพรีเมียม</p>
+        <span class="logo">
+          <img class="logo-mark" src="assets/logo/logo.png" alt="โลโก้ สมาร์ทอินเตอร์คูล" width="44" height="44">
+          <span class="logo-text">
+            <b>สมาร์ทอินเตอร์คูล</b>
+            <small data-lang-th="ช่างวัฒนา · ซ่อมตู้เย็นนอกสถานที่" data-lang-en="Chang Watthana · On-Site Repair">ช่างวัฒนา · ซ่อมตู้เย็นนอกสถานที่</small>
+          </span>
+        </span>
+        <p data-lang-th="บริการซ่อมตู้เย็น ตู้แช่ นอกสถานที่ในกรุงเทพฯ และปริมณฑล โดยช่างมืออาชีพประสบการณ์กว่า 10 ปี รวดเร็ว ราคายุติธรรม รับประกันผลงาน" data-lang-en="On-site refrigerator and cooler repair across Bangkok and its surrounding provinces, by professional technicians with over 10 years of experience — fast, fairly priced, and guaranteed.">บริการซ่อมตู้เย็น ตู้แช่ นอกสถานที่ในกรุงเทพฯ และปริมณฑล โดยช่างมืออาชีพประสบการณ์กว่า 10 ปี รวดเร็ว ราคายุติธรรม รับประกันผลงาน</p>
         <div class="social-row">
-          <a href="#" aria-label="Facebook"><i data-lucide="facebook" width="16" height="16"></i></a>
-          <a href="#" aria-label="Instagram"><i data-lucide="instagram" width="16" height="16"></i></a>
-          <a href="#" aria-label="LINE"><i data-lucide="message-circle" width="16" height="16"></i></a>
+          <a href="tel:0956286980" aria-label="โทรศัพท์"><i data-lucide="phone" width="16" height="16"></i></a>
+          <a href="https://line.me/ti/p/lDq5cWlmaz" target="_blank" rel="noopener" aria-label="LINE"><i data-lucide="message-circle" width="16" height="16"></i></a>
         </div>
       </div>
       <div class="footer-cols">
         <div class="footer-col">
-          <h4 data-lang-th="เมนู" data-lang-en="Menu">เมนู</h4>
+          <h4 data-lang-th="บริการของเรา" data-lang-en="Services">บริการของเรา</h4>
           <div class="footer-links">
-            <a href="#services" data-lang-th="บริการ" data-lang-en="Services">บริการ</a>
+            <a href="#services" data-lang-th="ซ่อมตู้เย็นบ้าน" data-lang-en="Household fridges">ซ่อมตู้เย็นบ้าน</a>
+            <a href="#services" data-lang-th="ซ่อมตู้แช่ร้านค้า" data-lang-en="Commercial coolers">ซ่อมตู้แช่ร้านค้า</a>
+            <a href="#services" data-lang-th="ซ่อมตู้แช่พิเศษ" data-lang-en="Specialty coolers">ซ่อมตู้แช่พิเศษ</a>
+            <a href="#services" data-lang-th="บำรุงรักษา" data-lang-en="Maintenance">บำรุงรักษา</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4 data-lang-th="เมนูหลัก" data-lang-en="Menu">เมนูหลัก</h4>
+          <div class="footer-links">
+            <a href="#pricing" data-lang-th="ค่าบริการ" data-lang-en="Rates">ค่าบริการ</a>
+            <a href="#gallery" data-lang-th="ผลงาน" data-lang-en="Our work">ผลงาน</a>
             <a href="#process" data-lang-th="กระบวนการ" data-lang-en="Process">กระบวนการ</a>
-            <a href="#trust" data-lang-th="ความไว้วางใจ" data-lang-en="Trust">ความไว้วางใจ</a>
-            <a href="#contact" data-lang-th="ติดต่อ" data-lang-en="Contact">ติดต่อ</a>
+            <a href="#article" data-lang-th="บทความ" data-lang-en="Guide">บทความ</a>
+            <a href="#contact" data-lang-th="ติดต่อเรา" data-lang-en="Contact">ติดต่อเรา</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4 data-lang-th="พื้นที่ให้บริการ" data-lang-en="Coverage">พื้นที่ให้บริการ</h4>
+          <div class="footer-links">
+            <span data-lang-th="กรุงเทพมหานคร" data-lang-en="Bangkok">กรุงเทพมหานคร</span>
+            <span data-lang-th="นนทบุรี" data-lang-en="Nonthaburi">นนทบุรี</span>
+            <span data-lang-th="ปทุมธานี" data-lang-en="Pathum Thani">ปทุมธานี</span>
+            <span data-lang-th="สมุทรปราการ" data-lang-en="Samut Prakan">สมุทรปราการ</span>
+            <span data-lang-th="พื้นที่ใกล้เคียง" data-lang-en="Nearby areas">พื้นที่ใกล้เคียง</span>
           </div>
         </div>
         <div class="footer-col">
           <h4 data-lang-th="ติดต่อ" data-lang-en="Contact">ติดต่อ</h4>
           <div class="footer-links">
-            <a href="tel:0812345678">081-234-5678</a>
-            <a href="mailto:contact@nitayarepair.co.th">contact@nitayarepair.co.th</a>
+            <a href="tel:0956286980">095-628-6980</a>
+            <a href="https://line.me/ti/p/lDq5cWlmaz" target="_blank" rel="noopener">LINE</a>
+            <span data-lang-th="เปิด 24 ชั่วโมง ทุกวัน" data-lang-en="Open 24 hours, daily">เปิด 24 ชั่วโมง ทุกวัน</span>
           </div>
         </div>
       </div>
     </div>
     <div class="footer-bottom">
-      <span data-lang-th="© 2569 นิตยา บุญแสนรัน สงวนลิขสิทธิ์" data-lang-en="© 2026 นิตยา บุญแสนรัน. All rights reserved.">© 2569 นิตยา บุญแสนรัน สงวนลิขสิทธิ์</span>
+      <span data-lang-th="© 2568 ช่างวัฒนา ซ่อมตู้เย็น นอกสถานที่ (สมาร์ทอินเตอร์คูล) — บริการซ่อมตู้เย็น ตู้แช่ กรุงเทพฯ ปริมณฑล" data-lang-en="© 2025 Chang Watthana On-Site Refrigerator Repair (Smart Intercool) — refrigerator and cooler service across Bangkok and vicinity">© 2568 ช่างวัฒนา ซ่อมตู้เย็น นอกสถานที่ (สมาร์ทอินเตอร์คูล) — บริการซ่อมตู้เย็น ตู้แช่ กรุงเทพฯ ปริมณฑล</span>
     </div>
   </div>
 </footer>
+
+<div class="fab">
+  <a class="fab-line" href="https://line.me/ti/p/lDq5cWlmaz" target="_blank" rel="noopener" aria-label="แชทผ่าน LINE"><i data-lucide="message-circle" width="22" height="22"></i></a>
+  <a class="fab-call" href="tel:0956286980" aria-label="โทร 095-628-6980"><i data-lucide="phone" width="22" height="22"></i></a>
+</div>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+  <button class="lb-btn lb-close" id="lbClose" aria-label="ปิด"><i data-lucide="x"></i></button>
+  <button class="lb-btn lb-prev" id="lbPrev" aria-label="ก่อนหน้า"><i data-lucide="chevron-left"></i></button>
+  <img id="lbImg" src="" alt="">
+  <button class="lb-btn lb-next" id="lbNext" aria-label="ถัดไป"><i data-lucide="chevron-right"></i></button>
+  <div class="lb-count" id="lbCount"></div>
+</div>
+
 
 <script>
   // Nav scroll state
@@ -993,25 +2316,123 @@
   // Accordion
   document.querySelectorAll('.acc-item').forEach(function(item){
     var head = item.querySelector('.acc-head');
-    var panelEl = item.querySelector('.acc-panel');
     head.addEventListener('click', function(){
       var isOpen = item.classList.contains('open');
       document.querySelectorAll('.acc-item').forEach(function(other){
         other.classList.remove('open');
-        other.querySelector('.acc-panel').style.maxHeight = null;
+        other.querySelector('.acc-head').setAttribute('aria-expanded', 'false');
       });
       if(!isOpen){
         item.classList.add('open');
-        panelEl.style.maxHeight = panelEl.scrollHeight + 'px';
+        head.setAttribute('aria-expanded', 'true');
       }
     });
   });
 
-  lucide.createIcons();
+
+  // Pricing accordion (independent open/close)
+  document.querySelectorAll('.pacc-item').forEach(function(item){
+    var head = item.querySelector('.pacc-head');
+    head.addEventListener('click', function(){
+      var open = item.classList.toggle('open');
+      head.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  });
+
+  // Gallery: show more + lightbox
+  (function(){
+    var items = Array.prototype.slice.call(document.querySelectorAll('.gal-item'));
+    if(!items.length) return;
+    var moreBtn = document.getElementById('galMore');
+    if(moreBtn){
+      moreBtn.addEventListener('click', function(){
+        items.forEach(function(it){ it.classList.remove('is-hidden'); });
+        moreBtn.parentNode.removeChild(moreBtn);
+      });
+    }
+    var lb = document.getElementById('lightbox'),
+        lbImg = document.getElementById('lbImg'),
+        lbCount = document.getElementById('lbCount'),
+        idx = 0;
+    function show(i){
+      idx = (i + items.length) % items.length;
+      var img = items[idx].querySelector('img');
+      lbImg.src = img.getAttribute('data-full') || img.getAttribute('src');
+      lbImg.alt = img.getAttribute('alt') || '';
+      lbCount.textContent = (idx + 1) + ' / ' + items.length;
+    }
+    function open(i){ show(i); lb.classList.add('open'); document.body.style.overflow = 'hidden'; }
+    function close(){ lb.classList.remove('open'); document.body.style.overflow = ''; }
+    items.forEach(function(it, i){
+      it.addEventListener('click', function(){ open(i); });
+    });
+    document.getElementById('lbClose').addEventListener('click', close);
+    document.getElementById('lbPrev').addEventListener('click', function(e){ e.stopPropagation(); show(idx - 1); });
+    document.getElementById('lbNext').addEventListener('click', function(e){ e.stopPropagation(); show(idx + 1); });
+    lb.addEventListener('click', function(e){ if(e.target === lb) close(); });
+    document.addEventListener('keydown', function(e){
+      if(!lb.classList.contains('open')) return;
+      if(e.key === 'Escape') close();
+      if(e.key === 'ArrowLeft') show(idx - 1);
+      if(e.key === 'ArrowRight') show(idx + 1);
+    });
+  })();
+
+  // Booking form -> direct contact prompt
+  (function(){
+    var form = document.querySelector('.form'), done = document.getElementById('formDone');
+    if(!form || !done) return;
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      if(!form.checkValidity()){ form.reportValidity(); return; }
+      form.style.display = 'none';
+      done.classList.add('show');
+      done.scrollIntoView({behavior:'smooth', block:'center'});
+    });
+  })();
+
+  // Icons are loaded from a CDN with defer — render them once the DOM and that script are ready,
+  // and degrade quietly if the CDN is unreachable.
+  window.addEventListener('DOMContentLoaded', function(){
+    if(window.lucide){ lucide.createIcons(); }
+  });
 </script>
 
 <script>
-(function(){var K='site-lang',L=localStorage.getItem(K)||'th';function S(l){L=l;localStorage.setItem(K,l);document.documentElement.lang=l;document.querySelectorAll('[data-lang-th]').forEach(function(e){var t=e.getAttribute('data-lang-'+l);if(t!==null){if(/[<&]/.test(t)){e.innerHTML=t}else{e.textContent=t}}});var lb=document.querySelector('.lang-sw__label');if(lb){lb.textContent=l.toUpperCase()}}var sw=document.querySelector('.lang-sw');if(sw){sw.addEventListener('click',function(){S(L==='th'?'en':'th')});sw.style.cursor='pointer'}if(L!=='th'){S(L)}})();
+(function(){var K='site-lang',L=localStorage.getItem(K)||'th';function S(l){L=l;localStorage.setItem(K,l);document.documentElement.lang=l;document.querySelectorAll('[data-lang-th]').forEach(function(e){var t=e.getAttribute('data-lang-'+l);if(t!==null){if(/[<&]/.test(t)){e.innerHTML=t}else{e.textContent=t}}});document.querySelectorAll('[data-label-en]').forEach(function(e){var v=e.getAttribute('data-label-'+l);if(v!==null){e.setAttribute('data-label',v)}});var lb=document.querySelector('.lang-sw__label');if(lb){lb.textContent=l.toUpperCase()}}var sw=document.querySelector('.lang-sw');if(sw){sw.addEventListener('click',function(){S(L==='th'?'en':'th')});sw.style.cursor='pointer'}if(L!=='th'){S(L)}})();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HomeAndConstructionBusiness",
+  "name": "ช่างวัฒนา ซ่อมตู้เย็น นอกสถานที่ (สมาร์ทอินเตอร์คูล)",
+  "alternateName": "สมาร์ทอินเตอร์คูล",
+  "description": "บริการซ่อมตู้เย็น ตู้แช่ นอกสถานที่ กรุงเทพฯ และปริมณฑล ประสบการณ์กว่า 10 ปี รับประกันผลงาน 3 เดือน",
+  "image": "assets/logo/logo.png",
+  "logo": "assets/logo/logo.png",
+  "telephone": "+66956286980",
+  "priceRange": "฿฿",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "เขตสายไหม",
+    "addressRegion": "กรุงเทพมหานคร",
+    "addressCountry": "TH"
+  },
+  "areaServed": [
+    {"@type": "City", "name": "กรุงเทพมหานคร"},
+    {"@type": "City", "name": "นนทบุรี"},
+    {"@type": "City", "name": "ปทุมธานี"},
+    {"@type": "City", "name": "สมุทรปราการ"}
+  ],
+  "openingHoursSpecification": [{
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+    "opens": "00:00",
+    "closes": "23:59"
+  }],
+  "sameAs": ["https://line.me/ti/p/lDq5cWlmaz"]
+}
 </script>
 
 </body>
